@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send("열심히 만들어 봅시다.")
+    res.send("우리 모두 화이팅..!")
 })
 
 app.get("/test", (req,res) => {
