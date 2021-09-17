@@ -5,7 +5,7 @@ app.get("/", (req, res) => {
   res.send("우리 모두 화이팅...!");
 });
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.send("통신 성공");
 });
 
