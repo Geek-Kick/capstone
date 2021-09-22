@@ -7,6 +7,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
+      <Text>황승환 바보</Text>
       <Button title="Full url" color="#f194ff" onPress={() => axiosTest1()} />
       <Button title="Proxy url" color="#f194ff" onPress={() => axiosTest2()} />
       <StatusBar style="auto" />
