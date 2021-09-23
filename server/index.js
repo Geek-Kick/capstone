@@ -30,4 +30,8 @@ const example = require("./src/api/example/exampleRoute");
 app.use("/example", example);
 
 const port = process.env.SERVER_PORT;
-app.listen(port, () => console.log(`Server is listening on ${port}`));
+app.listen(port, () =>
+  console.log(
+    `Server is listening on ${port} \n NODE_ENV = ${process.env.NODE_ENV}`
+  )
+);

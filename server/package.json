@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha './src/test/*.spec.js' ",
     "start": "node index.js",
-    "start:dev": "NODE_ENV=development nodemon index.js",
-    "start:prod": "NODE_ENV=production node index.js"
+    "start:dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start:prod": "cross-env NODE_ENV=production node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "cross-env": "^7.0.3",
     "mocha": "^9.1.1",
     "nodemon": "^2.0.12"
   }
