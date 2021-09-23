@@ -1,3 +1,11 @@
-exports.test = (req, res) => {
-  return res.send("hi");
+const joi = require("./exampleJoi");
+
+exports.test = async (req, res) => {
+  const schema = joi.joiExample;
+  try {
+    await schema.validateAsync(req.body);
+    return res.status(200).json({ success: true, message: "성공!" });
+  } catch (e) {
+    return res.status(400).json({ success: false, message: e.message });
+  }
 };
