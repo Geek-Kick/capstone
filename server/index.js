@@ -26,5 +26,8 @@ app.get("/api/test", (req, res) => {
   res.send("통신 성공");
 });
 
+const example = require("./src/api/example/exampleRoute");
+app.use("/example", example);
+
 const port = process.env.SERVER_PORT;
 app.listen(port, () => console.log(`Server is listening on ${port}`));
