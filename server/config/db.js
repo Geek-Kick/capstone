@@ -4,10 +4,8 @@ const pool = mysql.createPool({
   user: process.env.RDS_USERNAME,
   password: process.env.RDS_PASSWORD,
   port: process.env.RDS_PORT,
-  databases: process.env.RDS_DB_NAME,
+  database: process.env.RDS_DB_NAME,
 });
-
-
 
 module.exports = {
   pool: pool,
