@@ -29,7 +29,10 @@ app.get("/api/test", (req, res) => {
 });
 
 const example = require("./src/api/example/exampleRoute");
+const users = require("./src/api/user/userRoute");
+
 app.use("/example", example);
+app.use("/users", users);
 
 const port = process.env.SERVER_PORT;
 app.listen(port, () =>
