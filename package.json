@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "concurrently \"npm run start --prefix client\" \"npm run start:dev --prefix server\"",
+    "start": "concurrently \"NODE_ENV=development npm run start --prefix client\" \"npm run start:dev --prefix server\"",
+    "start:prod": "concurrently \"NODE_ENV=production npm run start --prefix client\" \"npm run start:dev --prefix server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
