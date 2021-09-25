@@ -1,7 +1,7 @@
 const dao = require("./userDao");
 const { pool } = require("../../../config/db");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const createJWT = require("../../function/createJWT");
 
 exports.duplicateTest = async (req_body) => {
   const con = await pool.getConnection(async (conn) => conn);
@@ -65,28 +65,7 @@ exports.login = async (req_body) => {
     if (!compare) {
       return "wrongPassword";
     }
-
-    const accessToken = jwt.sign(
-      {
-        userId: user.id,
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: process.env.ACCESS_TOKEN_TIME,
-      }
-    );
-    const refreshToken = jwt.sign(
-      {
-        userId: user.id,
-      },
-      process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: process.env.REFRESH_TOKEN_TIME,
-      }
-    );
-
-    const returnToken = { accessToken, refreshToken };
-    return returnToken;
+    return await createJWT(user.id);
   } catch (e) {
     await con.rollback();
     console.log(`Service Error \n ${e}`);
