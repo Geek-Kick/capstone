@@ -6,8 +6,6 @@ router.post("/", controller.signIn);
 
 router.post("/login", controller.login);
 
-router.post("/logout", auth, (req, res) => {
-  res.send("logout");
-});
+router.post("/logout", auth, controller.logout);
 
 module.exports = router;

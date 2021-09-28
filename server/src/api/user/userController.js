@@ -56,3 +56,11 @@ exports.login = async (req, res) => {
     return res.status(400).json({ success: false, message: e.message });
   }
 };
+
+exports.logout = (req, res) => {
+  return res
+    .status(200)
+    .cookie("accessToken", null)
+    .cookie("refreshToken", null)
+    .json({ success: true, message: "로그아웃 성공" });
+};
