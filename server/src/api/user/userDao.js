@@ -14,8 +14,21 @@ SELECT * FROM User
 WHERE email = ?
 `;
 
+const getUserProfile = `
+SELECT * FROM User
+WHERE id = ?
+`;
+
+const updateUserQuery = `
+UPDATE User 
+SET nickName = ? , password = ? , phone = ? , emailAdv = ?, smsAdv = ?
+WHERE id = ?
+`;
+
 module.exports = {
   duplicateTestQuery,
   singInDao,
   getUserByEamilQuery,
+  getUserProfile,
+  updateUserQuery,
 };

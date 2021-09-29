@@ -73,3 +73,48 @@ exports.login = async (req_body) => {
     con.release();
   }
 };
+
+exports.getProfile = async (userId) => {
+  const query = dao.getUserProfile;
+  const con = await pool.getConnection(async (conn) => conn);
+
+  try {
+    await con.beginTransaction();
+    const row = await con.query(query, userId);
+    await con.commit();
+    return row[0];
+  } catch (e) {
+    await con.rollback();
+    console.log(`service Error ]n ${e}`);
+  } finally {
+    con.release();
+  }
+};
+
+exports.updateUser = async (req_body, userId) => {
+  const { nickName, password, phone, emailAdv, smsAdv } = req_body;
+
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
+  const updateUserInfo = [
+    nickName,
+    hashedPassword,
+    phone,
+    emailAdv,
+    smsAdv,
+    userId,
+  ];
+  const query = dao.updateUserQuery;
+  const con = await pool.getConnection(async (conn) => conn);
+  try {
+    await con.beginTransaction();
+    const row = await con.query(query, updateUserInfo);
+    await con.commit();
+    return row[0].changedRows;
+  } catch (e) {
+    await con.rollback();
+    console.log(`Service Error \n ${e}`);
+  } finally {
+    con.release();
+  }
+};
