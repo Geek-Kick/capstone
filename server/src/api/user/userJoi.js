@@ -1,6 +1,6 @@
 const joi = require("joi");
 
-const email = joi.string().email().required();
+const email = joi.string().email();
 const nickName = joi.string().max(20);
 const password = joi.string().min(6);
 const phone = joi
