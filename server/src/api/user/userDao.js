@@ -21,7 +21,7 @@ WHERE id = ?
 
 const updateUserQuery = `
 UPDATE User 
-SET nickName = ? , password = ? , phone = ? , emailAdv = ?, smsAdv = ?
+SET nickName = ? , password = ? , phone = ? , emailAdv = ?, smsAdv = ?, schoolId = ?
 WHERE id = ?
 `;
 
