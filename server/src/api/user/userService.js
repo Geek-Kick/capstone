@@ -101,16 +101,16 @@ exports.getProfile = async (userId) => {
 };
 
 exports.updateUser = async (req_body, userId) => {
-  const { nickName, password, phone, emailAdv, smsAdv } = req_body;
+  const { nickName, password, phone, emailAdv, smsAdv, schoolId } = req_body;
 
   const hashedPassword = bcrypt.hashSync(password, 10);
-
   const updateUserInfo = [
     nickName,
     hashedPassword,
     phone,
     emailAdv,
     smsAdv,
+    schoolId,
     userId,
   ];
   const query = dao.updateUserQuery;
