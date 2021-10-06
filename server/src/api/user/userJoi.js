@@ -9,6 +9,7 @@ const phone = joi
   .pattern(/^[0-9]+$/);
 const smsAdv = joi.boolean();
 const emailAdv = joi.boolean();
+const schoolId = joi.number();
 // 추후에 비밀번호 복잡성 증가 예정
 // 핸드폰 번호 검증도 수정 예정
 
@@ -19,6 +20,7 @@ exports.signInJoi = joi.object({
   phone: phone.required(),
   emailAdv: emailAdv.required(),
   smsAdv: smsAdv.required(),
+  schoolId: schoolId.required(),
 });
 
 exports.loginJoi = joi.object({

@@ -24,11 +24,20 @@ exports.duplicateTest = async (req_body) => {
 };
 
 exports.signIn = async (req_body) => {
-  const { email, nickName, password, phone, emailAdv, smsAdv } = req_body;
+  const { email, nickName, password, phone, emailAdv, smsAdv, schoolId } =
+    req_body;
 
   const hashedPassword = bcrypt.hashSync(password, 10);
 
-  const signInInfo = [email, nickName, hashedPassword, phone, emailAdv, smsAdv];
+  const signInInfo = [
+    email,
+    nickName,
+    hashedPassword,
+    phone,
+    emailAdv,
+    smsAdv,
+    schoolId,
+  ];
 
   const con = await pool.getConnection(async (conn) => conn);
   const query = dao.singInDao;
