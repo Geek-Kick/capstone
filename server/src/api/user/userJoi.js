@@ -34,4 +34,5 @@ exports.updateUserJoi = joi.object({
   phone: phone.required(),
   emailAdv: emailAdv.required(),
   smsAdv: smsAdv.required(),
+  schoolId: schoolId.required(),
 });
