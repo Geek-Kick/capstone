@@ -29,3 +29,18 @@ exports.postPost = async (req_body, userId, imageUrl_body) => {
     con.release();
   }
 };
+
+exports.patchPost = async (req_body, userId) => {
+  const con = await pool.getConnection(async conn => conn);
+  const query = dao.patchQuery;
+  const { id, contents } = req_body;
+  try {
+    const patchPostRow = await con.query(query, [contents, id, userId]);
+    return 1;
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
