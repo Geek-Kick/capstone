@@ -31,7 +31,6 @@ exports.signIn = async (req, res) => {
 exports.login = async (req, res) => {
   const schema = joi.loginJoi;
   const req_body = req.body;
-
   try {
     await schema.validateAsync(req_body);
 

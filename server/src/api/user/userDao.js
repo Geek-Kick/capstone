@@ -5,8 +5,8 @@ WHERE email = ? OR nickName = ? OR phone = ?
 
 const singInDao = `
 INSERT INTO User
-(email, nickName, password, phone, emailAdv, smsAdv)
-VALUES(?,?,?,?,?,?)
+(email, nickName, password, phone, emailAdv, smsAdv, schoolId)
+VALUES(?,?,?,?,?,?,?)
 `;
 
 const getUserByEamilQuery = `
