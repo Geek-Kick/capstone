@@ -57,15 +57,33 @@ const Signin = ({ navigation }) => {
     }
   };
 
+  // const _axiosTestFunction = async (data) => {
+  //   // post는 url 뒤에 {}로 데이터 전송 가능
+  //   try {
+  //     console.log("hi");
+  //     const res = await axios.post("http://localhost:5000/example/test", {
+  //       email,
+  //       password,
+  //     });
+
+  //     console.log(res.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
   const _axiosTestFunction = async (data) => {
     // post는 url 뒤에 {}로 데이터 전송 가능
     try {
-      const res = await axios.post("http://localhost:5000/example/test", {
-        id: 200,
+      const response = await axios.post("http://localhost:5000/users/login", {
+        email,
+        password,
       });
 
-      console.log(res.data);
-    } catch (e) {}
+      console.log(response.data);
+    } catch (e) {
+      console.log(e.response.data);
+    }
   };
 
   return (
