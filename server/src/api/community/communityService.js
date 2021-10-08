@@ -44,3 +44,18 @@ exports.patchPost = async (req_body, userId) => {
     con.release();
   }
 };
+
+exports.deletePost = async (req_body, userId) => {
+  const con = await pool.getConnection(async conn => conn);
+  const query = dao.deletePostQuery;
+  const { id } = req_body;
+  try {
+    const row = await con.query(query, [id, userId]);
+    return 1;
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};

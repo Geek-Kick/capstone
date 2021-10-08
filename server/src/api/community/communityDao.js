@@ -14,11 +14,17 @@ VALUES(?,?);`;
 const patchQuery = `
 UPDATE Post
 SET contents=?
-WHERE id = ?;`;
+WHERE id = ? and userId = ?;`;
+
+const deletePostQuery = `
+UPDATE Post
+SET status = 'DELETED'
+WHERE id = ? and userId = ?;`;
 
 module.exports = {
   postPostQuery,
   getPostQuery,
   postImageQuery,
   patchQuery,
+  deletePostQuery,
 };

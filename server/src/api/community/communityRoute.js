@@ -4,5 +4,6 @@ const controller = require('./communityController');
 
 router.post('/', auth, controller.post); //커뮤니티 게시글 작성
 router.patch('/', auth, controller.patch); //커뮤니티 게시글 수정
+router.patch('/deletion', auth, controller.delete); //커뮤니티 게시글 삭제
 
 module.exports = router;

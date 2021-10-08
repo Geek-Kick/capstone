@@ -15,3 +15,7 @@ exports.patchJoi = joi.object({
   id: id.required(),
   contents: contents.required(),
 });
+
+exports.deleteJoi = joi.object({
+  id: id.required(),
+});
