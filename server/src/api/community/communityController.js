@@ -45,3 +45,11 @@ exports.delete = async (req, res) => {
     return res.status(400).json({ success: false, message: e.message });
   }
 };
+
+exports.getPost = async (req, res) => {
+  const schema = joi.getPostJoi;
+  const req_query = req.query;
+  await schema.validateAsync(req_query);
+  const result = await service.getPost(req_query);
+  return res.status(200).send(result);
+};

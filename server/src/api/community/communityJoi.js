@@ -4,6 +4,7 @@ const title = joi.string().max(20);
 const category = joi.string();
 const contents = joi.string();
 const id = joi.number();
+const sort = joi.string();
 
 exports.postJoi = joi.object({
   title: title.required(),
@@ -18,4 +19,9 @@ exports.patchJoi = joi.object({
 
 exports.deleteJoi = joi.object({
   id: id.required(),
+});
+
+exports.getPostJoi = joi.object({
+  category: category.required(),
+  sort: sort.required(),
 });

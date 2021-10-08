@@ -59,3 +59,35 @@ exports.deletePost = async (req_body, userId) => {
     con.release();
   }
 };
+
+exports.getPost = async req_query => {
+  const con = await pool.getConnection(async conn => conn);
+  const populerQuery = dao.getPopularQuery;
+  const latestQuery = dao.latestQuery;
+  const scrapQuery = dao.scrapQuery;
+  const viewQuery = dao.viewQuery;
+  const commentQuery = dao.commentQuery;
+  const { category, sort } = req_query;
+  try {
+    if (sort === 'POPULAR') {
+      const row = await con.query(populerQuery, [category]);
+      return row[0];
+    } else if (sort === 'LATEST') {
+      const row = await con.query(latestQuery, [category]);
+      return row[0];
+    } else if (sort === 'SCRAP') {
+      const row = await con.query(scrapQuery, [category]);
+      return row[0];
+    } else if (sort === 'VIEW') {
+      const row = await con.query(viewQuery, [category]);
+      return row[0];
+    } else if (sort === 'COMMENT') {
+      const row = await con.query(commentQuery, [category]);
+      return row[0];
+    }
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+  } finally {
+    con.release();
+  }
+};
