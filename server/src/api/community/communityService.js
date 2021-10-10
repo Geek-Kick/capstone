@@ -91,3 +91,22 @@ exports.getPost = async req_query => {
     con.release();
   }
 };
+
+exports.getDetail = async (req_query, userId) => {
+  const con = await pool.getConnection(async conn => conn);
+  const addViewQuery = dao.addViewQuery;
+  const getDetailQuery = dao.getDetailQuery;
+  const { postId } = req_query;
+  try {
+    await con.beginTransaction();
+    await con.query(addViewQuery, [postId, userId]);
+    const row = await con.query(getDetailQuery, [postId]);
+    await con.commit();
+    return row[0];
+  } catch (e) {
+    await con.rollback();
+    console.log(`Service error \n ${e}`);
+  } finally {
+    con.release();
+  }
+};

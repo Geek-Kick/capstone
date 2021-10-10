@@ -186,6 +186,25 @@ LEFT JOIN ( SELECT id, postId, imageUrl
 WHERE a.category = ? AND a.status = 'ACTIVE'
 ORDER BY commentCount desc;`;
 
+const addViewQuery = `
+INSERT INTO View(postId, userId)
+VALUES (?, ?);`;
+
+const getDetailQuery = `
+SELECT a.id as postId
+        , a.userId as userId
+        , b.nickName as userNickName
+        , b.imageUrl as userImage
+        , a.title as postTitle
+        , a.category as postCategory
+        , a.contents as postContents
+        , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+FROM Post a
+LEFT JOIN ( SELECT id, nickName, imageUrl, totalPoint
+            FROM User ) as b
+            on a.userId = b.id
+WHERE a.id = ?;`;
+
 module.exports = {
   postPostQuery,
   getPostQuery,
@@ -197,4 +216,6 @@ module.exports = {
   scrapQuery,
   viewQuery,
   commentQuery,
+  addViewQuery,
+  getDetailQuery,
 };

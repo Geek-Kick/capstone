@@ -53,3 +53,12 @@ exports.getPost = async (req, res) => {
   const result = await service.getPost(req_query);
   return res.status(200).send(result);
 };
+
+exports.getDetail = async (req, res) => {
+  const schema = joi.getDetailJoi;
+  const req_query = req.query;
+  const userId = req.userId;
+  await schema.validateAsync(req_query);
+  const result = await service.getDetail(req_query, userId);
+  return res.status(200).send(result);
+};

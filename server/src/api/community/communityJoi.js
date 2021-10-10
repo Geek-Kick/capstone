@@ -5,6 +5,7 @@ const category = joi.string();
 const contents = joi.string();
 const id = joi.number();
 const sort = joi.string();
+const postId = joi.number();
 
 exports.postJoi = joi.object({
   title: title.required(),
@@ -24,4 +25,8 @@ exports.deleteJoi = joi.object({
 exports.getPostJoi = joi.object({
   category: category.required(),
   sort: sort.required(),
+});
+
+exports.getDetailJoi = joi.object({
+  postId: postId.required(),
 });
