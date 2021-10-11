@@ -205,6 +205,40 @@ LEFT JOIN ( SELECT id, nickName, imageUrl, totalPoint
             on a.userId = b.id
 WHERE a.id = ?;`;
 
+const getDetailCommentQuery = `
+SELECT a.id as id
+        , a.userId as userId
+        , b.nickName as nickName
+        , b.imageUrl as userImage
+        , a.contents as commentComtents
+        , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+FROM Comment a
+LEFT JOIN ( SELECT id, nickName, imageUrl
+            FROM User ) AS b
+            ON a.userId = b.id
+WHERE a.postId = ? AND a.status = 'ACTIVE'
+ORDER BY a.createdAt ASC;`;
+
+const getReplyQuery = `
+SELECT a.id as replyId
+        , a.userId as userId
+        , b.nickName as nickName
+        , b.imageUrl as userImage
+        , a.contents as replyContents
+        , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+FROM Reply a
+LEFT JOIN ( SELECT id, nickName, imageUrl
+            FROM User ) AS b
+            on a.userId = b.id
+WHERE a.commentId = ? AND a.status = 'ACTIVE'
+ORDER BY a.createdAt ASC;`;
+
+const getCommentImageQuery = `
+SELECT id, imageUrl
+FROM CommentImage
+WHERE commentId = ? AND status = 'ACTIVE'
+ORDER BY createdAt ASC;`;
+
 module.exports = {
   postPostQuery,
   getPostQuery,
@@ -218,4 +252,7 @@ module.exports = {
   commentQuery,
   addViewQuery,
   getDetailQuery,
+  getDetailCommentQuery,
+  getReplyQuery,
+  getCommentImageQuery,
 };
