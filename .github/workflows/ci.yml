@@ -1,13 +1,12 @@
 name: CI-EAS build
 on:
   push:
-    branches:
-      - master
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   build:
-    name: Install and build
+    name: Test and build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
