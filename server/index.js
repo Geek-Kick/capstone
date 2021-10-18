@@ -19,6 +19,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // 테스트용 삭제 예정
 app.get("/", (req, res) => {
   res.send("우리 모두 화이팅...!");
