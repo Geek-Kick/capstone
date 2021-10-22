@@ -6,6 +6,7 @@ const contents = joi.string();
 const id = joi.number();
 const sort = joi.string();
 const postId = joi.number();
+const keyword = joi.string();
 
 exports.postJoi = joi.object({
   title: title.required(),
@@ -29,4 +30,8 @@ exports.getPostJoi = joi.object({
 
 exports.getDetailJoi = joi.object({
   postId: postId.required(),
+});
+
+exports.getSearchJoi = joi.object({
+  keyword: keyword.required(),
 });

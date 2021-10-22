@@ -70,3 +70,11 @@ exports.getDetailComment = async (req, res) => {
   const result = await service.getDetailComment(req_query);
   return res.status(200).send(result);
 };
+
+exports.getSearch = async (req, res) => {
+  const schema = joi.getSearchJoi;
+  const req_query = req.query;
+  await schema.validateAsync(req_query);
+  const result = await service.getSearch(req_query);
+  return res.status(200).send(result);
+};

@@ -8,5 +8,6 @@ router.patch('/deletion', auth, controller.delete); //커뮤니티 게시글 삭
 router.get('/', auth, controller.getPost); //커뮤니티 게시글 조회
 router.get('/detail', auth, controller.getDetail); //커뮤니티 게시글 상세 조회
 router.get('/detail/comment', auth, controller.getDetailComment); //커뮤니티 게시글 댓글 조회
+router.get('/search', controller.getSearch); //글 검색
 
 module.exports = router;

@@ -134,3 +134,18 @@ exports.getDetailComment = async req_query => {
     con.release();
   }
 };
+
+exports.getSearch = async req_query => {
+  const con = await pool.getConnection(async conn => conn);
+  const query = dao.getSearchQuery;
+  const { keyword } = req_query;
+  const titleKeyword = '%' + keyword + '%';
+  try {
+    const row = await con.query(query, [titleKeyword]);
+    return row[0];
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+  } finally {
+    con.release();
+  }
+};
