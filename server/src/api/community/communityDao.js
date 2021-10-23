@@ -296,6 +296,19 @@ LEFT JOIN ( SELECT id, nickName
 WHERE a.title like ? AND a.status = 'ACTIVE'
 ORDER BY a.createdAt desc;`;
 
+const postCommentQuery = `
+INSERT INTO Comment(userId, postId, contents)
+VALUES(?,?,?);`;
+
+const postCommentImageQuery = `
+INSERT INTO CommentImage(postId, imageUrl)
+VALUES(?,?);`;
+
+const getCommentIdQuery = `
+SELECT id
+FROM Comment
+WHERE userId =? AND postId =? AND contents=?;`;
+
 module.exports = {
   postPostQuery,
   getPostQuery,
@@ -313,4 +326,7 @@ module.exports = {
   getReplyQuery,
   getCommentImageQuery,
   getSearchQuery,
+  postCommentQuery,
+  postCommentImageQuery,
+  getCommentIdQuery,
 };

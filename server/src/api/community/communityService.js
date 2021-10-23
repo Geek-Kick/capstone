@@ -149,3 +149,31 @@ exports.getSearch = async req_query => {
     con.release();
   }
 };
+
+exports.postComment = async (userId, req_body, image_body) => {
+  const con = await pool.getConnection(async conn => conn);
+  const commentQuery = dao.postCommentQuery;
+  const imageQuery = dao.postCommentImageQuery;
+  const getCommentIdQuery = dao.getCommentIdQuery;
+  const { postId, contents } = req_body;
+  const { imageUrl } = image_body;
+  try {
+    await con.beginTransaction();
+    const postCommentRow = await con.query(commentQuery, [userId, postId, contents]);
+    console.log(1);
+    const getCommentIdRow = await con.query(getCommentIdQuery, [userId, postId, contents]);
+    if (image_body) {
+      for (let i = 0; i < image_body.length; i++) {
+        const postImageRow = await con.query(imageQuery, [getCommentIdRow[0].id, image_body[i].imageUrl]);
+      }
+    }
+    await con.commit();
+    return 1;
+  } catch (e) {
+    await con.rollback();
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};

@@ -35,3 +35,8 @@ exports.getDetailJoi = joi.object({
 exports.getSearchJoi = joi.object({
   keyword: keyword.required(),
 });
+
+exports.postCommentJoi = joi.object({
+  postId: postId.required(),
+  contents: contents.required(),
+});
