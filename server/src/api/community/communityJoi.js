@@ -40,3 +40,7 @@ exports.postCommentJoi = joi.object({
   postId: postId.required(),
   contents: contents.required(),
 });
+
+exports.recommendJoi = joi.object({
+  postId: postId.required(),
+});

@@ -309,6 +309,30 @@ SELECT id
 FROM Comment
 WHERE userId =? AND postId =? AND contents=?;`;
 
+const recommendCheckQuery = `
+SELECT id
+FROM Recommend
+WHERE userId = ? AND postId = ?;`;
+
+const recommendStatusCheckQuery = `
+SELECT id
+FROM Recommend
+WHERE userId = ? AND postId = ? AND status = 'ACTIVE';`;
+
+const postRecommendQuery = `
+INSERT INTO Recommend(userId, postId)
+VALUES(?,?);`;
+
+const patchRecommendQuery = `
+UPDATE Recommend
+SET status = 'ACTIVE'
+WHERE userId = ? and postId = ?;`;
+
+const cancelRecommendQuery = `
+UPDATE Recommend
+SET status = 'DELETED'
+WHERE userId = ? and postId = ?;`;
+
 module.exports = {
   postPostQuery,
   getPostQuery,
@@ -329,4 +353,9 @@ module.exports = {
   postCommentQuery,
   postCommentImageQuery,
   getCommentIdQuery,
+  recommendCheckQuery,
+  recommendStatusCheckQuery,
+  postRecommendQuery,
+  patchRecommendQuery,
+  cancelRecommendQuery,
 };

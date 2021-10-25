@@ -160,7 +160,6 @@ exports.postComment = async (userId, req_body, image_body) => {
   try {
     await con.beginTransaction();
     const postCommentRow = await con.query(commentQuery, [userId, postId, contents]);
-    console.log(1);
     const getCommentIdRow = await con.query(getCommentIdQuery, [userId, postId, contents]);
     if (image_body) {
       for (let i = 0; i < image_body.length; i++) {
@@ -171,6 +170,35 @@ exports.postComment = async (userId, req_body, image_body) => {
     return 1;
   } catch (e) {
     await con.rollback();
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
+
+exports.postRecommend = async (userId, req_body) => {
+  const con = await pool.getConnection(async conn => conn);
+  const check = dao.recommendCheckQuery;
+  const checkStatus = dao.recommendStatusCheckQuery;
+  const postRecommend = dao.postRecommendQuery;
+  const patchRecommend = dao.patchRecommendQuery;
+  const cancelRecommend = dao.cancelRecommendQuery;
+  const { postId } = req_body;
+  try {
+    const checkRow = await con.query(check, [userId, postId]);
+    if (checkRow[0].length > 0) {
+      const checkStatusRow = await con.query(checkStatus, [userId, [postId]]);
+      if (checkStatusRow[0].length > 0) {
+        const cancelRecommendRow = await con.query(cancelRecommend, [userId, postId]);
+      } else {
+        const patchRecommendRow = await con.query(patchRecommend, [userId, postId]);
+      }
+    } else {
+      const postRecommendRow = await con.query(postRecommend, [userId, postId]);
+    }
+    return 1;
+  } catch (e) {
     console.log(`Service error \n ${e}`);
     return null;
   } finally {
