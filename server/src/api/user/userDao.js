@@ -25,10 +25,20 @@ SET nickName = ? , password = ? , phone = ? , emailAdv = ?, smsAdv = ?, schoolId
 WHERE id = ?
 `;
 
+const updateUserImageQeury = `
+UPDATE User
+SET imageUrl = ?
+WHERE id = ?
+`;
+
+const getUserImageQuery = `SELECT imageUrl FROM User WHERE id = ?`;
+
 module.exports = {
   duplicateTestQuery,
   singInDao,
   getUserByEamilQuery,
   getUserProfile,
   updateUserQuery,
+  updateUserImageQeury,
+  getUserImageQuery,
 };
