@@ -7,6 +7,4 @@ router.post("/test", controller.test);
 
 router.post("/image", upload.single("img"), controller.imageTest);
 
-// router.get("/getImage", controller.getImage);
-
 module.exports = router;
