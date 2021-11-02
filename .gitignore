@@ -2,4 +2,8 @@ node_modules
 
 .env.local
 
+.env
+
+.env.dev
+
 awsconfig.json
