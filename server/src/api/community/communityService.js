@@ -205,3 +205,32 @@ exports.postRecommend = async (userId, req_body) => {
     con.release();
   }
 };
+
+exports.postScrap = async (userId, req_body) => {
+  const con = await pool.getConnection(async con => con);
+  const check = dao.scrapCheckQuery;
+  const checkStatus = dao.scrapCheckStatusQuery;
+  const postScrap = dao.postScrapQuery;
+  const patchScrap = dao.patchScrapQuery;
+  const cancelScrap = dao.cancelScrapQuery;
+  const { postId } = req_body;
+  try {
+    const checkRow = await con.query(check, [userId, postId]);
+    if (checkRow[0].length > 0) {
+      const checkStatusRow = await con.query(checkStatus, [userId, postId]);
+      if (checkStatusRow[0].length > 0) {
+        const cancelScrapRow = await con.query(cancelScrap, [userId, [postId]]);
+      } else {
+        const patchScrapRow = await con.query(patchScrap, [userId, postId]);
+      }
+    } else {
+      const postScrapRow = await con.query(postScrap, [userId, postId]);
+    }
+    return 1;
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};

@@ -333,6 +333,30 @@ UPDATE Recommend
 SET status = 'DELETED'
 WHERE userId = ? and postId = ?;`;
 
+const scrapCheckQuery = `
+SELECT id
+FROM Scrap
+WHERE userId = ? AND postId = ?;`;
+
+const scrapCheckStatusQuery = `
+SELECT id
+FROM Scrap
+WHERE userId = ? AND postId = ? AND status = 'ACTIVE';`;
+
+const postScrapQuery = `
+INSERT INTO Scrap(userId, postId)
+VALUES(?,?);`;
+
+const patchScrapQuery = `
+UPDATE Scrap
+SET status = 'ACTIVE'
+WHERE userId = ? and postId = ?;`;
+
+const cancelScrapQuery = `
+UPDATE Scrap
+SET status = 'DELETED'
+WHERE userId = ? and postId = ?;`;
+
 module.exports = {
   postPostQuery,
   getPostQuery,
@@ -358,4 +382,9 @@ module.exports = {
   postRecommendQuery,
   patchRecommendQuery,
   cancelRecommendQuery,
+  scrapCheckQuery,
+  scrapCheckStatusQuery,
+  postScrapQuery,
+  patchScrapQuery,
+  cancelScrapQuery,
 };

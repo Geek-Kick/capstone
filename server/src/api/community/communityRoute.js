@@ -11,5 +11,6 @@ router.get('/detail/comment', auth, controller.getDetailComment); //커뮤니티
 router.get('/search', controller.getSearch); //글 검색
 router.post('/comment', auth, controller.postComment); //댓글 작성
 router.post('/recommend', auth, controller.recommend); //추천
+router.post('/scrap', auth, controller.postScrap); // 스크랩
 
 module.exports = router;

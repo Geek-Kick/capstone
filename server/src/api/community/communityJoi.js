@@ -44,3 +44,7 @@ exports.postCommentJoi = joi.object({
 exports.recommendJoi = joi.object({
   postId: postId.required(),
 });
+
+exports.scrapJoi = joi.object({
+  postId: postId.required(),
+});
