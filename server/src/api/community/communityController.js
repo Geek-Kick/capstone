@@ -129,7 +129,7 @@ exports.commentSelection = async (req, res) => {
   try {
     await schema.validateAsync(req_body);
     const result = await service.commentSelection(userId, req_body);
-    return result ? res.status(201).json({ success: true, message: '성공' }) : res.status(500).send('서버 오류');
+    return result ? res.status(201).json({ success: true, message: '성공적으로 채택' }) : res.status(500).send('서버 오류');
   } catch (e) {
     console.log(`controller error \n ${e}`);
     return res.status(400).json({ success: false, message: e.message });
