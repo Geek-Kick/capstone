@@ -357,6 +357,16 @@ UPDATE Scrap
 SET status = 'DELETED'
 WHERE userId = ? and postId = ?;`;
 
+const selectionCheckQuery = `
+SELECT commentId
+FROM Post
+WHERE userId = ? and id = ? and status = 'ACTIVE';`;
+
+const commentSelectionQuery = `
+UPDATE Post
+SET commentId = ?
+WHERE userId = ? and id = ? and status = 'ACTIVE';`;
+
 module.exports = {
   postPostQuery,
   getPostQuery,
@@ -387,4 +397,6 @@ module.exports = {
   postScrapQuery,
   patchScrapQuery,
   cancelScrapQuery,
+  selectionCheckQuery,
+  commentSelectionQuery,
 };

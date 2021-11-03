@@ -234,3 +234,25 @@ exports.postScrap = async (userId, req_body) => {
     con.release();
   }
 };
+
+exports.commentSelection = async (userId, req_body) => {
+  const con = await pool.getConnection(async con => con);
+  const check = dao.selectionCheckQuery;
+  const commentSelection = dao.commentSelectionQuery;
+  const { postId, commentId } = req_body;
+  try {
+    const checkRow = await con.query(check, [userId, postId]);
+    const checking = checkRow[0];
+    if (checking[0].commentId === null) {
+      const commentSelectionRow = await con.query(commentSelection, [commentId, userId, postId]);
+      return 1;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};

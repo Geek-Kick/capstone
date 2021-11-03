@@ -7,6 +7,7 @@ const id = joi.number();
 const sort = joi.string();
 const postId = joi.number();
 const keyword = joi.string();
+const commentId = joi.number();
 
 exports.postJoi = joi.object({
   title: title.required(),
@@ -47,4 +48,9 @@ exports.recommendJoi = joi.object({
 
 exports.scrapJoi = joi.object({
   postId: postId.required(),
+});
+
+exports.selectionJoi = joi.object({
+  postId: postId.required(),
+  commentId: commentId.required(),
 });
