@@ -256,3 +256,17 @@ exports.commentSelection = async (userId, req_body) => {
     con.release();
   }
 };
+
+exports.getMyPost = async userId => {
+  const con = await pool.getConnection(async con => con);
+  const myPost = dao.getMyPostQuery;
+  try {
+    const myPostRows = await con.query(myPost, [userId]);
+    return myPostRows[0];
+  } catch (e) {
+    console.log(`Service erro \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
