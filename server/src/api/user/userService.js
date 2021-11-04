@@ -127,3 +127,32 @@ exports.updateUser = async (req_body, userId) => {
     con.release();
   }
 };
+
+exports.updateImage = async (data) => {
+  const query = dao.updateUserImageQeury;
+  const con = await pool.getConnection(async (conn) => conn);
+  try {
+    const row = await con.query(query, data);
+    return row[0].affectedRows;
+  } catch (e) {
+    console.log(`Service Error\n ${e}`);
+  } finally {
+    con.release();
+  }
+};
+
+exports.getUserImage = async (userId) => {
+  const query = dao.getUserImageQuery;
+  const con = await pool.getConnection(async (conn) => conn);
+
+  try {
+    const row = await con.query(query, userId);
+    const imageUrl = process.env.IMAGE_URL + row[0][0].imageUrl;
+    row[0][0].imageUrl = imageUrl;
+    return row[0][0];
+  } catch (e) {
+    console.log(`Service Error \n ${e}`);
+  } finally {
+    con.release();
+  }
+};
