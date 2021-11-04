@@ -264,7 +264,21 @@ exports.getMyPost = async userId => {
     const myPostRows = await con.query(myPost, [userId]);
     return myPostRows[0];
   } catch (e) {
-    console.log(`Service erro \n ${e}`);
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
+
+exports.getMyScrap = async userId => {
+  const con = await pool.getConnection(async con => con);
+  const myScrap = dao.getMyScrapQuery;
+  try {
+    const myScrapRows = await con.query(myScrap, [userId]);
+    return myScrapRows[0];
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
     return null;
   } finally {
     con.release();

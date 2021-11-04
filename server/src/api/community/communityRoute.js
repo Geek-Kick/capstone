@@ -14,5 +14,6 @@ router.post('/recommend', auth, controller.recommend); //추천
 router.post('/scrap', auth, controller.postScrap); // 스크랩
 router.patch('/selection', auth, controller.commentSelection); // 댓글 채택
 router.get('/my-post', auth, controller.getMyPost); // 내 게시글 조회
+router.get('/my-scrap', auth, controller.getMyScrap); // 마이 스크랩 조회
 
 module.exports = router;
