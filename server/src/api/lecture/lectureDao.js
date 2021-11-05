@@ -29,7 +29,7 @@ SELECT b.id as lectureId
     , b.imageUrl as lectureImage
     , b.link as lectureLink
     , c.name as subject
-    , CONCAT(DATE_FORMAT(a.createdAt, "%Y-%m-%d"),"~") as createdAt
+    , CONCAT(DATE_FORMAT(a.createdAt, "%Y-%m-%d")," ~ ") as createdAt
 FROM SelectedLecture a
 LEFT JOIN ( SELECT id, name, lecturer, imageUrl, subjectId, link
             FROM Lecture ) as b
