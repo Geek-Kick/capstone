@@ -29,3 +29,17 @@ exports.postMyLecture = async (userId, req_body) => {
     con.release();
   }
 };
+
+exports.getMyLecture = async userId => {
+  const con = await pool.getConnection(conn => conn);
+  const myLectures = dao.getMyLectureQuery;
+  try {
+    const myLectureRow = await con.query(myLectures, [userId]);
+    return myLectureRow[0];
+  } catch (e) {
+    console.log(`Service error \n${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
