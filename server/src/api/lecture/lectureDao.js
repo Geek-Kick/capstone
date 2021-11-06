@@ -40,6 +40,24 @@ LEFT JOIN ( SELECT id, name
 WHERE a.userId = ? AND a.status = 'ACTIVE'
 ORDER BY c.id ASC, a.createdAt DESC;`;
 
+const getPopularLectureQuery = `
+SELECT a.id as lectureId
+    , a.name as lectureName
+    , a.lecturer as lecturer
+    , a.imageUrl as lectureImage
+    , a.link as lectureLink
+    , c.name as subject
+    , a.info as lectureInfo
+FROM Lecture a
+LEFT JOIN ( SELECT id, userId, lectureId, count(lectureId) as 'selectCount'
+            FROM SelectedLecture
+            GROUP BY lectureId) as b
+            ON a.id = b.lectureId
+LEFT JOIN ( SELECT id, name
+            FROM Subject ) as c
+            ON a.subjectId = c.id
+ORDER BY selectCount DESC LIMIT 10;`;
+
 module.exports = {
   myLectureCheckQuery,
   myLectureStatusCheckQuery,
@@ -47,4 +65,5 @@ module.exports = {
   patchMyLectureQuery,
   cancelMyLectureQuery,
   getMyLectureQuery,
+  getPopularLectureQuery,
 };

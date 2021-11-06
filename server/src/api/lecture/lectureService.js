@@ -43,3 +43,17 @@ exports.getMyLecture = async userId => {
     con.release();
   }
 };
+
+exports.getPopularLecture = async () => {
+  const con = await pool.getConnection(conn => conn);
+  const popularLecture = dao.getPopularLectureQuery;
+  try {
+    const popularLectureRow = await con.query(popularLecture);
+    return popularLectureRow[0];
+  } catch (e) {
+    console.log(`Service error \n${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
