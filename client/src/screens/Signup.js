@@ -165,7 +165,7 @@ const Signup = ({ navigation }) => {
           source={(emailAdv ? icons.check : icons.uncheck)}
           ment="이메일 수신동의" />
         <Adv
-          onPress={() => {setSmsAdv(!smsAdv); }}
+          onPress={() => { setSmsAdv(!smsAdv); }}
           source={(smsAdv ? icons.check : icons.uncheck)}
           ment="SMS 수신동의" />
         <ErrorMessage message={errorMessage} />
@@ -174,7 +174,7 @@ const Signup = ({ navigation }) => {
           onPress={_handleSignupBtnPress}
           disabled={disabled}
         />
-
+        {/* dfdf */}
       </Container>
     </KeyboardAwareScrollView>
   );
