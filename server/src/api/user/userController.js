@@ -31,7 +31,6 @@ exports.signIn = async (req, res) => {
 exports.login = async (req, res) => {
   const schema = joi.loginJoi;
   const req_body = req.body;
-
   try {
     await schema.validateAsync(req_body);
 
@@ -87,4 +86,39 @@ exports.logout = (req, res) => {
     .cookie("accessToken", null)
     .cookie("refreshToken", null)
     .json({ success: true, message: "로그아웃 성공" });
+};
+
+exports.updateImage = async (req, res) => {
+  const image = req.file;
+  if (image === undefined) {
+    return res.status(400).json({ success: false, message: "No Image" });
+  }
+  const url = image.key;
+
+  const userId = req.userId;
+  const data = [url, userId];
+
+  try {
+    const result = service.updateImage(data);
+    return result
+      ? res.status(201).json({ success: true, message: "이미지 저장 성공" })
+      : res.status(500).send("서버 에러");
+  } catch (e) {
+    console.log(`controller error\n ${e}`);
+    return res.status(500);
+  }
+};
+
+exports.getUserImage = async (req, res) => {
+  const userId = req.userId;
+
+  try {
+    const result = await service.getUserImage(userId);
+    return result
+      ? res.status(200).send(result)
+      : res.status(500).send("server error");
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(500).send("server error");
+  }
 };

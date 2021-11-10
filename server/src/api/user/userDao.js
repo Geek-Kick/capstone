@@ -5,8 +5,8 @@ WHERE email = ? OR nickName = ? OR phone = ?
 
 const singInDao = `
 INSERT INTO User
-(email, nickName, password, phone, emailAdv, smsAdv)
-VALUES(?,?,?,?,?,?)
+(email, nickName, password, phone, emailAdv, smsAdv, schoolId)
+VALUES(?,?,?,?,?,?,?)
 `;
 
 const getUserByEamilQuery = `
@@ -21,9 +21,17 @@ WHERE id = ?
 
 const updateUserQuery = `
 UPDATE User 
-SET nickName = ? , password = ? , phone = ? , emailAdv = ?, smsAdv = ?
+SET nickName = ? , password = ? , phone = ? , emailAdv = ?, smsAdv = ?, schoolId = ?
 WHERE id = ?
 `;
+
+const updateUserImageQeury = `
+UPDATE User
+SET imageUrl = ?
+WHERE id = ?
+`;
+
+const getUserImageQuery = `SELECT imageUrl FROM User WHERE id = ?`;
 
 module.exports = {
   duplicateTestQuery,
@@ -31,4 +39,6 @@ module.exports = {
   getUserByEamilQuery,
   getUserProfile,
   updateUserQuery,
+  updateUserImageQeury,
+  getUserImageQuery,
 };
