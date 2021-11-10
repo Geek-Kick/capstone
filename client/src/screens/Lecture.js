@@ -10,10 +10,10 @@ background-color: ${({ theme }) => theme.background};
 const RowContainer = styled.View`
 flex-direction: row;
 align-items: flex-start;
-justify-content: space-between;
+justify-content: space-around;
 border-bottom-width : 1px;
 border-color : ${({ theme }) => theme.imgBtnBackground};
-padding : 0 20px;
+padding : 5px 20px 5px 0;
 `;
 
 const ColumnContainer = styled.View`
@@ -29,16 +29,21 @@ font-size : 20px;
 `;
 
 const Lecture = () => {
+
+
     return (
         <Container>
-            <StyledText style={{ paddingTop: 10, paddingLeft: 20 }}>내 정보</StyledText>
+            <StyledText style={{ padding: 20 }}>내 정보</StyledText>
             <RowContainer>
-                <TouchableOpacity><SubText>1학년 3월</SubText></TouchableOpacity>
-                <TouchableOpacity><SubText>1학년 6월</SubText></TouchableOpacity>
-                <TouchableOpacity><SubText>1학년 9월</SubText></TouchableOpacity>
-                <TouchableOpacity><SubText>2학년 3월</SubText></TouchableOpacity>
-                <TouchableOpacity><SubText>2학년 6월</SubText></TouchableOpacity>
-                <TouchableOpacity><SubText>2학년 9월</SubText></TouchableOpacity>
+                <TouchableOpacity><SubText>1학년</SubText></TouchableOpacity>
+                <TouchableOpacity><SubText>2학년</SubText></TouchableOpacity>
+                <TouchableOpacity><SubText>3학년</SubText></TouchableOpacity>
+            </RowContainer>
+            <RowContainer>
+                <TouchableOpacity><SubText>3월</SubText></TouchableOpacity>
+                <TouchableOpacity><SubText>6월</SubText></TouchableOpacity>
+                <TouchableOpacity><SubText>9월</SubText></TouchableOpacity>
+                <TouchableOpacity><SubText>11월</SubText></TouchableOpacity>
             </RowContainer>
         </Container>
     )
