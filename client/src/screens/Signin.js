@@ -62,7 +62,6 @@ const Signin = ({ navigation }) => {
     }
   };
 
-<<<<<<< HEAD
 
   // const _axiosTestFunction = async (data) => {
   //   // post는 url 뒤에 {}로 데이터 전송 가능
@@ -86,27 +85,10 @@ const Signin = ({ navigation }) => {
   //     console.log(e)
   //   }
   // }
-=======
-  // const _axiosTestFunction = async (data) => {
-  //   // post는 url 뒤에 {}로 데이터 전송 가능
-  //   try {
-  //     console.log("hi");
-  //     const res = await axios.post("http://localhost:5000/example/test", {
-  //       email,
-  //       password,
-  //     });
-
-  //     console.log(res.data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
->>>>>>> 9432536b7eed8eba837bf4b823877ff4119ffc72
 
   const _axiosTestFunction = async (data) => {
     // post는 url 뒤에 {}로 데이터 전송 가능
     try {
-<<<<<<< HEAD
       const response = await axios.post("http://13.209.8.159:5000/users/login", {
         email,
         password,
@@ -118,14 +100,6 @@ const Signin = ({ navigation }) => {
         Alert.alert("오류", err.message)
       });
 
-=======
-      const response = await axios.post("http://localhost:5000/users/login", {
-        email,
-        password,
-      });
-
-      console.log(response.data);
->>>>>>> 9432536b7eed8eba837bf4b823877ff4119ffc72
     } catch (e) {
       console.log(e.response.data);
     }
