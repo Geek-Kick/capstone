@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Profile, Ranking, Lecture, Quiz } from '../screens';
+import { Profile, Ranking, Lecture, Quiz, Community } from '../screens';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ThemeConstext, ThemeContext } from 'styled-components/native';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
@@ -33,12 +33,19 @@ const Home = ({ navigation, route }) => {
                     tabBarIcon: ({ focused }) => (TabIcon({ name: focused ? 'book' : 'book', focused }))
                 }}
             />
+            <Tab.Screen name="커뮤니티" component={Community}
+                options={{
+                    tabBarActiveTintColor: '#8E75F9',
+                    tabBarIcon: ({ focused }) => (TabIcon({ name: focused ? 'people' : 'people-outline', focused }))
+                }}
+            />
             <Tab.Screen name="강의" component={Lecture}
                 options={{
                     tabBarActiveTintColor: '#8E75F9',
                     tabBarIcon: ({ focused }) => (TabIcon({ name: focused ? 'laptop-chromebook' : 'laptop-chromebook', focused }))
                 }}
             />
+
             <Tab.Screen name="마이페이지" component={Profile}
                 options={{
                     tabBarActiveTintColor: '#8E75F9',

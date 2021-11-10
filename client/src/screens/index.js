@@ -7,6 +7,7 @@ import RankingList from './RankingList';
 import PersonalRanking from './PersonalRanking'
 import Lecture from './Lecture'
 import Quiz from './Quiz'
+import Community from './Community';
 
 
-export { Signin, Signup, Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz };
+export { Signin, Signup, Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, Community };
