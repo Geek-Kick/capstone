@@ -39,5 +39,9 @@ export const theme = {
     //Tab
     tabBtnActive: Colors.main,
     tabBtnInactive: Colors.grey_1,
+
+    //Lecture
+    gradeText: Colors.grey_1,
+    monthText: Colors.grey_1,
 }
 

@@ -23,7 +23,7 @@ const Container = styled.View`
 `;
 
 const LOGO =
-  "https://firebasestorage.googleapis.com/v0/b/rn-chat-fb183.appspot.com/o/logo.png?alt=media";
+  "https://firebasestorage.googleapis.com/v0/b/rn-chat-fb183.appspot.com/o/icon.png?alt=media";
 
 const Signin = ({ navigation }) => {
   const insets = useSafeAreaInsets();
