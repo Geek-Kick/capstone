@@ -33,6 +33,8 @@ const Input = forwardRef(
     ({
         label,
         value,
+        style,
+        containerStyle,
         onChangeText,
         onSubmitEditing,
         onBlur,
@@ -55,6 +57,8 @@ const Input = forwardRef(
                         setIsFocused(false);
                         onBlur();
                     }}
+                    style={style}
+                    containerStyle={containerStyle}
                     placeholder={placeholder}
                     returnKeyType={returnKeyType}
                     maxLength={maxLength}

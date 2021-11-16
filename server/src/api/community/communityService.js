@@ -207,7 +207,7 @@ exports.postRecommend = async (userId, req_body) => {
 };
 
 exports.postScrap = async (userId, req_body) => {
-  const con = await pool.getConnection(async con => con);
+  const con = await pool.getConnection(async conn => conn);
   const check = dao.scrapCheckQuery;
   const checkStatus = dao.scrapCheckStatusQuery;
   const postScrap = dao.postScrapQuery;
@@ -236,7 +236,7 @@ exports.postScrap = async (userId, req_body) => {
 };
 
 exports.commentSelection = async (userId, req_body) => {
-  const con = await pool.getConnection(async con => con);
+  const con = await pool.getConnection(async conn => conn);
   const check = dao.selectionCheckQuery;
   const commentSelection = dao.commentSelectionQuery;
   const { postId, commentId } = req_body;
@@ -258,13 +258,27 @@ exports.commentSelection = async (userId, req_body) => {
 };
 
 exports.getMyPost = async userId => {
-  const con = await pool.getConnection(async con => con);
+  const con = await pool.getConnection(async conn => conn);
   const myPost = dao.getMyPostQuery;
   try {
     const myPostRows = await con.query(myPost, [userId]);
     return myPostRows[0];
   } catch (e) {
-    console.log(`Service erro \n ${e}`);
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
+
+exports.getMyScrap = async userId => {
+  const con = await pool.getConnection(async conn => conn);
+  const myScrap = dao.getMyScrapQuery;
+  try {
+    const myScrapRows = await con.query(myScrap, [userId]);
+    return myScrapRows[0];
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
     return null;
   } finally {
     con.release();

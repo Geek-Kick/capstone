@@ -43,7 +43,7 @@ height : 200px;
 border-radius: 100px;
 `;
 
-const Image = ({ url, showButton, onChangePhoto }) => {
+const Image = ({ url, showButton, onChangePhoto, style }) => {
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -70,7 +70,7 @@ const Image = ({ url, showButton, onChangePhoto }) => {
         }
     };
     return <Container>
-        <ProfileImage source={{ uri: url }} />
+        <ProfileImage style={style} source={{ uri: url }} />
         {showButton && <PhotoButton onPress={_handlePhotBtnPress} />}
     </Container>
 };

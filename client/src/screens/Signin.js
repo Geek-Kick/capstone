@@ -9,6 +9,8 @@ import { Alert } from "react-native";
 import { validateEmail, removeWhitespace } from "../utils";
 import { validate } from "compare-versions";
 import axios from "axios";
+import { UserContext } from '../contexts';
+import index from '../navigations'
 
 const Container = styled.View`
   flex: 1;
@@ -26,6 +28,7 @@ const LOGO =
 const Signin = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useContext(ThemeContext);
+  const { setUser } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,6 +51,8 @@ const Signin = ({ navigation }) => {
     const changedPassword = removeWhitespace(password);
     setPassword(changedPassword);
   };
+
+
   const _handleSigninBtnPress = async () => {
     try {
       const user = await signin({ email, password });
@@ -57,35 +62,48 @@ const Signin = ({ navigation }) => {
     }
   };
 
+
   // const _axiosTestFunction = async (data) => {
   //   // post는 url 뒤에 {}로 데이터 전송 가능
   //   try {
-  //     console.log("hi");
   //     const res = await axios.post("http://localhost:5000/example/test", {
-  //       email,
-  //       password,
-  //     });
-
+  //       id: 200,
+  //     }).then(res => {
+  //       console.log(response);
+  //     }).catch(err => {
+  //       console.log(err);
+  //     })
+  //     navigation.navigate("Profile", { res });
   //     console.log(res.data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
+  //   } catch (e) { Alert.alert("오류", e.message); }
   // };
+
+  // const _axiosTestFunction = async (data) => {
+  //   try {
+  //     navigation.navigate("Profile", {});
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
 
   const _axiosTestFunction = async (data) => {
     // post는 url 뒤에 {}로 데이터 전송 가능
     try {
-      const response = await axios.post("http://localhost:5000/users/login", {
+      const response = await axios.post("http://13.209.8.159:5000/users/login", {
         email,
         password,
+      }).then(response => {
+        console.log(response.data);
+        setUser({ uid: 123124 })
+      }).catch(err => {
+        console.log(err);
+        Alert.alert("오류", err.message)
       });
 
-      console.log(response.data);
     } catch (e) {
       console.log(e.response.data);
     }
   };
-
   return (
     <KeyboardAwareScrollView
       extraScrollHeight={40}
@@ -109,7 +127,7 @@ const Signin = ({ navigation }) => {
           value={password}
           onChangeText={_handlePasswordChange}
           isPassword={true}
-          onSubmitEditing={_handleSigninBtnPress}
+          onSubmitEditing={_axiosTestFunction}
         />
         <ErrorMessage message={errorMessage} />
         <Button
