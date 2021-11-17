@@ -138,3 +138,17 @@ exports.postReview = async (userId, req_body) => {
     con.release();
   }
 };
+
+exports.searchLecture = async (lectureKeyword, lecturerKeyword) => {
+  const con = await pool.getConnection(conn => conn);
+  const searchLecture = dao.searchLectureQuery;
+  try {
+    const searchLectureRow = await con.query(searchLecture, [lectureKeyword, lecturerKeyword]);
+    return searchLectureRow[0];
+  } catch (e) {
+    console.log(`Service error \n${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};

@@ -93,3 +93,16 @@ exports.postReview = async (req, res) => {
     return res.status(400).json({ success: false, message: e.message });
   }
 };
+
+exports.searchLecture = async (req, res) => {
+  const { keyword } = req.query;
+  const lectureKeyword = '%' + keyword + '%';
+  const lecturerKeyword = '%' + keyword + '%';
+  try {
+    const result = await service.searchLecture(lectureKeyword, lecturerKeyword);
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};

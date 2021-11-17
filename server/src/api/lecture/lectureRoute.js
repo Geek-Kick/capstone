@@ -10,4 +10,5 @@ router.get('/id/:lectureId', controller.lectureDetail); // 강의 상세 조회
 router.get('/id/:lectureId/review', controller.lectureReview); // 강의평 조회
 router.get('/id/:lectureId/total-review', controller.lectureTotalReview); // 강의평 더보기 조회
 router.post('/review', auth, controller.postReview); // 강의평 작성
+router.get('/search', controller.searchLecture); // 강의 검색
 module.exports = router;
