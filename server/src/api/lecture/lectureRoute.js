@@ -8,5 +8,6 @@ router.get('/popular', controller.popularLecture); // 인기 강의 조회
 router.get('/popular-lecturer', controller.popularLecturer); // 인기 강사 조회
 router.get('/id/:lectureId', controller.lectureDetail); // 강의 상세 조회
 router.get('/id/:lectureId/review', controller.lectureReview); // 강의평 조회
-router.get('/id/:lectureId/total-review', controller.lectureTotalReview); //강의평 더보기 조회
+router.get('/id/:lectureId/total-review', controller.lectureTotalReview); // 강의평 더보기 조회
+router.post('/review', auth, controller.postReview); // 강의평 작성
 module.exports = router;

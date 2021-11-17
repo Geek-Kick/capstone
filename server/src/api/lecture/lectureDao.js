@@ -135,6 +135,10 @@ LEFT JOIN ( SELECT id, nickName
 WHERE a.lectureId = ? and a.status = 'ACTiVE'
 ORDER BY a.createdAt DESC;`;
 
+const postReviewQuery = `
+INSERT Review(userId, lectureId, star, contents)
+VALUES(?,?,?,?);`;
+
 module.exports = {
   myLectureCheckQuery,
   myLectureStatusCheckQuery,
@@ -149,4 +153,5 @@ module.exports = {
   getLectureReviewQuery,
   getReviewSummaryQuery,
   getLectureTotalReviewQuery,
+  postReviewQuery,
 };

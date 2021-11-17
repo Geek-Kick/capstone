@@ -123,3 +123,18 @@ exports.getLectureTotalReview = async lectureId => {
     con.release();
   }
 };
+
+exports.postReview = async (userId, req_body) => {
+  const con = await pool.getConnection(conn => conn);
+  const postReview = dao.postReviewQuery;
+  const { lectureId, star, contents } = req_body;
+  try {
+    const postReviewRow = await con.query(postReview, [userId, lectureId, star, contents]);
+    return 1;
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
