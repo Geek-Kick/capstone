@@ -58,6 +58,83 @@ LEFT JOIN ( SELECT id, name
             ON a.subjectId = c.id
 ORDER BY selectCount DESC LIMIT 10;`;
 
+const getPopularLecturerQuery = `
+SELECT a.id as lecturerId 
+    , a.name as lecturerName
+    , a.imageUrl as lecturerImage
+FROM Lecturer a
+LEFT JOIN ( SELECT id, lecturerId
+            FROM Lecture ) as b
+            ON a.id = b.lecturerId
+LEFT JOIN ( SELECT id, userId, lectureId, count(lectureId) as 'selectCount'
+            FROM SelectedLecture
+            GROUP BY lectureId) as c
+            ON b.id = c.lectureId
+ORDER BY selectCount DESC LIMIT 10;`;
+
+const getLectureByLectureIdQuery = `
+SELECT a.id as lectureId
+    , a.name as lectureName
+    , b.name as lecturer
+    , a.imageUrl as lectureImage
+    , a.link as lectureLink
+    , d.name as subject
+    , a.info as lectureInfo
+    , case when starAvg is null then 0 else starAvg end as starAvg
+FROM Lecture a
+LEFT JOIN ( SELECT id, name
+            FROM Lecturer ) as b
+            on a.lecturerId = b.id
+LEFT JOIN ( SELECT id, lectureId, star, round(sum(star)/count(lectureId),1) as 'starAvg'
+            FROM Review
+            GROUP BY lectureId) as c
+            on a.id = c.lectureId
+LEFT JOIN ( SELECT id, name
+            FROM Subject ) as d
+            ON a.subjectId = d.id
+WHERE a.id = ?;`;
+
+const getReviewCountQuery = `
+SELECT count(lectureId) AS reviewCount
+FROM Review
+WHERE lectureId = ? and status = 'ACTIVE'
+GROUP BY lectureId;`;
+
+const getLectureReviewQuery = `
+SELECT a.id as reviewId
+    , b.id as userId
+    , b.nickName as userNickname
+    , a.star as starPoint
+    , a.contents as reviewContents
+    , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+FROM Review a
+LEFT JOIN ( SELECT id, nickName
+            FROM User ) as b
+            on a.userId = b.id
+WHERE a.lectureId = ? and a.status = 'ACTiVE'
+ORDER BY a.createdAt DESC LIMIT 5;`;
+
+const getReviewSummaryQuery = `
+SELECT count(lectureId) AS reviewCount
+        , round(sum(star)/count(lectureId),1) as starAvg
+FROM Review
+WHERE lectureId = ? and status = 'ACTIVE'
+GROUP BY lectureId;`;
+
+const getLectureTotalReviewQuery = `
+SELECT a.id as reviewId
+    , b.id as userId
+    , b.nickName as userNickname
+    , a.star as starPoint
+    , a.contents as reviewContents
+    , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+FROM Review a
+LEFT JOIN ( SELECT id, nickName
+            FROM User ) as b
+            on a.userId = b.id
+WHERE a.lectureId = ? and a.status = 'ACTiVE'
+ORDER BY a.createdAt DESC;`;
+
 module.exports = {
   myLectureCheckQuery,
   myLectureStatusCheckQuery,
@@ -66,4 +143,10 @@ module.exports = {
   cancelMyLectureQuery,
   getMyLectureQuery,
   getPopularLectureQuery,
+  getPopularLecturerQuery,
+  getLectureByLectureIdQuery,
+  getReviewCountQuery,
+  getLectureReviewQuery,
+  getReviewSummaryQuery,
+  getLectureTotalReviewQuery,
 };

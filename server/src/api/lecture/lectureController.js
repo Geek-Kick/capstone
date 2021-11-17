@@ -36,3 +36,46 @@ exports.popularLecture = async (req, res) => {
     return res.status(400).json({ success: false, message: e.message });
   }
 };
+
+exports.popularLecturer = async (req, res) => {
+  try {
+    const result = await service.getPopularLecturer();
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};
+
+exports.lectureDetail = async (req, res) => {
+  const lectureId = req.params.lectureId;
+  try {
+    const result = await service.getLectureByLectureId(lectureId);
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};
+
+exports.lectureReview = async (req, res) => {
+  const lectureId = req.params.lectureId;
+  try {
+    const result = await service.getLectureReview(lectureId);
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};
+
+exports.lectureTotalReview = async (req, res) => {
+  const lectureId = req.params.lectureId;
+  try {
+    const result = await service.getLectureTotalReview(lectureId);
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};
