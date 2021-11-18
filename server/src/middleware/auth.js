@@ -2,9 +2,10 @@ const jwt = require("jsonwebtoken");
 const createJWT = require("../function/createJWT");
 
 exports.auth = async (req, res, next) => {
-  const accessToken = req.cookies.accessToken;
+  const accessToken = req.headers.authorization.split("Bearer ")[1];
   const refreshToken = req.cookies.refreshToken;
 
+  console.log(accessToken);
   try {
     // accessToken validation
     const result = await jwt.verify(
