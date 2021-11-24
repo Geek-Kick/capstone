@@ -11,6 +11,7 @@ import { validate } from "compare-versions";
 import axios from "axios";
 import { UserContext } from '../contexts';
 import index from '../navigations'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Container = styled.View`
   flex: 1;
@@ -95,6 +96,7 @@ const Signin = ({ navigation }) => {
       }).then(response => {
         console.log(response.data);
         setUser({ uid: 123124 })
+        // AsyncStorage.setItem('token', (토큰), ())
       }).catch(err => {
         console.log(err);
         Alert.alert("오류", err.message)

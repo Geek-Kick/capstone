@@ -8,6 +8,7 @@ import PersonalRanking from './PersonalRanking'
 import Lecture from './Lecture'
 import Quiz from './Quiz'
 import Community from './Community';
+import LectureClick from './LectureClick'
 
 
-export { Signin, Signup, Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, Community };
+export { Signin, Signup, Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, Community, LectureClick };
