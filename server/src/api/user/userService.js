@@ -41,8 +41,10 @@ exports.signIn = async (req_body) => {
 
   const con = await pool.getConnection(async (conn) => conn);
   const query = dao.singInDao;
+  const updateSchoolNumStudents = dao.singInUpdateStudentNum;
   try {
     await con.beginTransaction();
+    await con.query(updateSchoolNumStudents, schoolId);
     const row = await con.query(query, signInInfo);
     await con.commit();
     return row[0].affectedRows;
