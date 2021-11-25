@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"NODE_ENV=development npm run start --prefix client\" \"npm run start:dev --prefix server\"",
-    "start:prod": "concurrently \"NODE_ENV=production npm run start --prefix client\" \"npm run start:dev --prefix server\"",
-    "start:local": "concurrently \"NODE_ENV=production npm run start --prefix client\" \"npm run start:local --prefix server\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run start --prefix client\" \"npm run start:dev --prefix server\"",
+    "start:prod": "concurrently \"npm run start --prefix client\" \"npm run start:dev --prefix server\"",
+    "start:local": "concurrently \"npm run start --prefix client\" \"npm run start:local --prefix server\"",
+    "test": "echo \"Error: no testspecified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^6.2.1",
-    "multer": "^1.4.3"
+    "joi": "^17.4.2",
+    "multer": "^1.4.3",
+    "react-native-unimodules": "^0.14.10"
   }
 }

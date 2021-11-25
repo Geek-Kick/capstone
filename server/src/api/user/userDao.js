@@ -9,6 +9,12 @@ INSERT INTO User
 VALUES(?,?,?,?,?,?,?)
 `;
 
+const singInUpdateStudentNum = `
+UPDATE School
+SET numStudents = numStudents + 1
+WHERE id = ?
+`;
+
 const getUserByEamilQuery = `
 SELECT * FROM User
 WHERE email = ?
@@ -36,6 +42,7 @@ const getUserImageQuery = `SELECT imageUrl FROM User WHERE id = ?`;
 module.exports = {
   duplicateTestQuery,
   singInDao,
+  singInUpdateStudentNum,
   getUserByEamilQuery,
   getUserProfile,
   updateUserQuery,

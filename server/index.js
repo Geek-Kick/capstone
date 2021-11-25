@@ -33,11 +33,15 @@ const example = require("./src/api/example/exampleRoute");
 const users = require("./src/api/user/userRoute");
 const community = require("./src/api/community/communityRoute");
 const quiz = require("./src/api/quiz/quizRoute");
+const lecture = require("./src/api/lecture/lectureRoute");
+const ranking = require("./src/api/ranking/rankingRoute");
 
 app.use("/example", example);
 app.use("/users", users);
 app.use("/community", community);
 app.use("/quiz", quiz);
+app.use("/lecture", lecture);
+app.use("/ranking", ranking);
 
 const port = process.env.SERVER_PORT;
 app.listen(port, () =>

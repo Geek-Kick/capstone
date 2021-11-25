@@ -1,0 +1,23 @@
+name: Expo Publish
+# Events
+on:
+  push: # push가 일어나면 아래의 jobs를 수행하라
+    branches: # main 브랜치에서 push가 일어난 경우만 수행
+      - main
+jobs:
+  publish:
+    name: Install and publish
+    runs-on: ubuntu-latest # 작업이 이루어지는 환경
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+					# 깃헙 세팅의 secrete 페이지에서 세팅가능
+          username: ${{ secrets.EXPO_CLI_USERNAME }}
+          password: ${{ secrets.EXPO_CLI_PASSWORD }}
+      - run: npm install
+      - run: expo publish

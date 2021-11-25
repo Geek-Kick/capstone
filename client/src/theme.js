@@ -28,4 +28,16 @@ export const theme = {
     inputLabel: Colors.grey_1,
     inputPlaceholder: Colors.grey_1,
     inputBorder: Colors.grey_1,
+
+    //Spinner
+    spinnerBackground: Colors.black,
+    spinnerIndicator: Colors.white,
+
+    //Adv
+    advBackground: Colors.grey_0,
+
+    //Tab
+    tabBtnActive: Colors.main,
+    tabBtnInactive: Colors.grey_1,
 }
+

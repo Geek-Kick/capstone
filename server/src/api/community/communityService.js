@@ -205,3 +205,82 @@ exports.postRecommend = async (userId, req_body) => {
     con.release();
   }
 };
+
+exports.postScrap = async (userId, req_body) => {
+  const con = await pool.getConnection(async conn => conn);
+  const check = dao.scrapCheckQuery;
+  const checkStatus = dao.scrapCheckStatusQuery;
+  const postScrap = dao.postScrapQuery;
+  const patchScrap = dao.patchScrapQuery;
+  const cancelScrap = dao.cancelScrapQuery;
+  const { postId } = req_body;
+  try {
+    const checkRow = await con.query(check, [userId, postId]);
+    if (checkRow[0].length > 0) {
+      const checkStatusRow = await con.query(checkStatus, [userId, postId]);
+      if (checkStatusRow[0].length > 0) {
+        const cancelScrapRow = await con.query(cancelScrap, [userId, [postId]]);
+      } else {
+        const patchScrapRow = await con.query(patchScrap, [userId, postId]);
+      }
+    } else {
+      const postScrapRow = await con.query(postScrap, [userId, postId]);
+    }
+    return 1;
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
+
+exports.commentSelection = async (userId, req_body) => {
+  const con = await pool.getConnection(async conn => conn);
+  const check = dao.selectionCheckQuery;
+  const commentSelection = dao.commentSelectionQuery;
+  const { postId, commentId } = req_body;
+  try {
+    const checkRow = await con.query(check, [userId, postId]);
+    const checking = checkRow[0];
+    if (checking[0].commentId === null) {
+      const commentSelectionRow = await con.query(commentSelection, [commentId, userId, postId]);
+      return 1;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
+
+exports.getMyPost = async userId => {
+  const con = await pool.getConnection(async conn => conn);
+  const myPost = dao.getMyPostQuery;
+  try {
+    const myPostRows = await con.query(myPost, [userId]);
+    return myPostRows[0];
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
+
+exports.getMyScrap = async userId => {
+  const con = await pool.getConnection(async conn => conn);
+  const myScrap = dao.getMyScrapQuery;
+  try {
+    const myScrapRows = await con.query(myScrap, [userId]);
+    return myScrapRows[0];
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};

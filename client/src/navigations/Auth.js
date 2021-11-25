@@ -25,7 +25,7 @@ const Auth = () => {
                 onPress={onPress}
             />)
         }} />
-        <Stack.Screen name='Profile' component={Profile} />
+
 
     </Stack.Navigator>
 }
