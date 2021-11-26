@@ -50,3 +50,6 @@ exports.getSchoolRankSubject = async (subjectId) => {
     con.release();
   }
 }
+
+//TODO: 학교 종합 랭킹 조회 API 마저 구현하기 
+

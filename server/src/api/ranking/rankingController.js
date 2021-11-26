@@ -1,5 +1,5 @@
 const service = require("./rankingService");
-const joi = require("./rankingJoi");
+const Joi = require("./rankingJoi");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { isSchema } = require("joi");
@@ -10,7 +10,7 @@ const { isSchema } = require("joi");
  * path vairable : subjectId
  */
 exports.getLectureRank = async (req, res) => {
-  const schema = joi.rankJoi;
+  const schema = Joi.rankJoi;
   const subjectId = req.params.subjectId;
   const userId = req.userId;
   try {
@@ -18,10 +18,8 @@ exports.getLectureRank = async (req, res) => {
     const result = await service.getRank(subjectId, userId);
     return res.status(200).send(result);
   } catch (err) {
-    if (err.joi) {
-      assert(`controller error\n ${err}`);
-      return err.status(400).json({ success: false, message: err.message });
-    }
+    assert(`controller error\n ${err}`);
+    return err.status(400).json({ success: false, message: err.message });
   }
 };
 
@@ -31,17 +29,15 @@ exports.getLectureRank = async (req, res) => {
  * path vairable : subjectId
  */
 exports.getTotalSubRank = async (req, res) => {
-  const schema = joi.rankJoi;
+  const schema = Joi.rankJoi;
   const subjectId = req.params.subjectId;
   try {
     const value = await schema.validateAsync({ subjectId: subjectId });
     const result = await service.getAllSubRank(subjectId);
     return res.status(200).send(result);
   } catch (err) {
-    if (err.joi) {
-      assert(`controller error\n ${err}`);
-      return err.status(400).json({ success: false, message: err.message });
-    }
+    assert(`controller error\n ${err}`);
+    return err.status(400).json({ success: false, message: err.message });
   }
 };
 
@@ -54,10 +50,8 @@ exports.getAllSubTopHundredRank = async (req, res) => {
     const result = await service.getTopHundredRanking();
     return res.status(200).send(result);
   } catch (err) {
-    if (err.joi) {
-      assert(`controller error\n ${err}`);
-      return err.status(400).json({success: false, message: err.message});
-    }
+    assert(`controller error\n ${err}`);
+    return err.status(400).json({success: false, message: err.message});
   }
 };
 
@@ -70,10 +64,8 @@ exports.getAllSubTopHundredRank = async (req, res) => {
     const result = await service.getTopHundredRanking();
     return res.status(200).send(result);
   } catch (err) {
-    if (err.joi) {
-      assert(`controller error\n ${err}`);
-      return err.status(400).json({success: false, message: err.message});
-    }
+    assert(`controller error\n ${err}`);
+    return err.status(400).json({success: false, message: err.message});
   }
 };
 
@@ -82,16 +74,29 @@ exports.getAllSubTopHundredRank = async (req, res) => {
  * [GET] /shoolRanking/:subjectId
  */
  exports.getSchoolRankBySubject = async (req, res) => {
-  const schema = joi.rankJoi;
+  const schema = Joi.rankJoi;
   const subjectId = req.params.subjectId;
   try {
     const value = await schema.validateAsync({ subjectId: subjectId });
     const result = await service.getSchoolRankSubject(subjectId);
     return res.status(200).send(result);
   } catch (err) {
-    if (err.joi) {
-      assert(`controller error\n ${err}`);
-      return err.status(400).json({success: false, message: err.message});
-    }
+    assert(`controller error\n ${err}`);
+    return err.status(400).json({success: false, message: err.message});  
   }
 };
+
+/**
+ * API Name : 학교 종합 랭킹 조회 API
+ * [GET] /shoolRanking
+ */
+exports.getSchoolRank = async (req, res) => {
+  const userId = req.userId;
+  try {
+    const result = await service.getSchoolRank(userId);
+    return res.status(200).send(result);
+  } catch (err) {
+    assert(`controller error\n ${err}`);
+    return err.status(400).json({success: false, message: err.message});
+  }
+}

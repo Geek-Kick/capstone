@@ -1,6 +1,6 @@
-const joi = require('joi');
+const Joi = require('joi');
 
-exports.rankJoi = joi.object({
-    subjectId : joi.number().required(),
+exports.rankJoi = Joi.object({
+    subjectId : Joi.number().required(),
 });
 
