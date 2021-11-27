@@ -221,6 +221,44 @@ WHERE id = ?;`;
 // WHERE d.id = ?
 // ORDER BY lectureCount DESC;`;
 
+const getLecturerInfoQuery = `
+SELECT a.id as lecturerId
+      , a.name as lecturerName
+      , a.imageUrl as lecturerImage
+      , b.name as subject
+      , a.company as company
+FROM Lecturer a
+LEFT JOIN Subject as b
+ON a.subjectId = b.id
+WHERE a.id = ?;`;
+
+const getLecturerLectureQuery = `
+SELECT a.id as lectureId
+    , a.name as lectureName
+    , b.name as lecturer
+    , a.imageUrl as lectureImage
+    , a.link as lectureLink
+    , d.name as subject
+    , a.info as lectureInfo
+    , case when starAvg is null then 0 else starAvg end as starAvg
+FROM Lecture a
+LEFT JOIN ( SELECT id, name
+            FROM Lecturer ) as b
+            ON a.lecturerId = b.id
+LEFT JOIN ( SELECT id, lectureId, star, round(sum(star)/count(lectureId),1) as 'starAvg'
+            FROM Review
+            GROUP BY lectureId) as c
+            ON a.id = c.lectureId
+LEFT JOIN ( SELECT id, name
+            FROM Subject ) as d
+            ON a.subjectId = d.id
+LEFT JOIN ( SELECT id, userId, lectureId, count(lectureId) as lectureCount
+            FROM SelectedLecture
+            GROUP BY lectureId ) as e
+            ON a.id = e.lectureId
+WHERE a.lecturerId = ? and a.status = 'ACTIVE'
+ORDER BY lectureCount DESC LIMIT 10;`;
+
 module.exports = {
   myLectureCheckQuery,
   myLectureStatusCheckQuery,
@@ -239,4 +277,6 @@ module.exports = {
   searchLectureQuery,
   lectureBySubjectQuery,
   subjectNameQuery,
+  getLecturerInfoQuery,
+  getLecturerLectureQuery,
 };

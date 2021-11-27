@@ -127,3 +127,14 @@ exports.getLectureBySubject = async (req, res) => {
 //     return res.status(400).json({ success: false, message: e.message });
 //   }
 // };
+
+exports.getLecturerInfo = async (req, res) => {
+  const lecturerId = req.params.lecturerId;
+  try {
+    const result = await service.getLecturerInfo(lecturerId);
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};

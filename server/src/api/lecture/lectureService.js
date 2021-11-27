@@ -188,3 +188,21 @@ exports.getLectureBySubject = async () => {
 //     con.release();
 //   }
 // };
+
+exports.getLecturerInfo = async lecturerId => {
+  const con = await pool.getConnection(conn => conn);
+  const lecturerInfo = dao.getLecturerInfoQuery;
+  const lecturerLecture = dao.getLecturerLectureQuery;
+  try {
+    const lecturerInfoRow = await con.query(lecturerInfo, [lecturerId]);
+    const lectureRow = await con.query(lecturerLecture, [lecturerId]);
+    const result = lecturerInfoRow[0];
+    result.push(lectureRow[0]);
+    return result;
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
