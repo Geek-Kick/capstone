@@ -93,6 +93,7 @@ exports.getAllSubTopHundredRank = async (req, res) => {
 exports.getSchoolRank = async (req, res) => {
   const userId = req.userId;
   try {
+    const value = await schema.validateAsync({userId : userId})
     const result = await service.getSchoolRank(userId);
     return res.status(200).send(result);
   } catch (err) {

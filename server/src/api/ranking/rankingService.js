@@ -52,4 +52,14 @@ exports.getSchoolRankSubject = async (subjectId) => {
 }
 
 //TODO: 학교 종합 랭킹 조회 API 마저 구현하기 
-
+exports.getSchoolRank = async (uesrId) => {
+  const con = await pool.getConnection(async (conn) => conn);
+  try {
+    const query = dao.getTopSchoolRankTotal(con, userId);
+    return query;
+  } catch (err) {
+    logger.err(`Getting Rank Service Error!\n : ${err.message}`);
+  } finally {
+    con.release();
+  }
+}

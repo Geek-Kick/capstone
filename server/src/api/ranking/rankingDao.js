@@ -46,9 +46,17 @@ async function getTopRankBySchoolSubject(con, subjectId) {
   return rankingRows;
 }
 
+// TODO: 쿼리문 작성
+async function getTopSchoolRankTotal(con, userId) {
+  const getRankQuery = `
+  
+  `
+}
+
 module.exports = {
   getRankBySubject,
   getSubjectTopRanking,
   getTopHundredRank,
   getTopRankBySchoolSubject,
+  getTopSchoolRankTotal,
 };
