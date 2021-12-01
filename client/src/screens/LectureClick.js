@@ -108,7 +108,7 @@ const LectureClick = ({ navigation }) => {
                 <IntroduceContainer>
                     <StyledText>강의평</StyledText>
                     <Input placeholder="강의평을 입력하세요." />
-                    <Button title="등록" containerStyle={{}} />
+                    <Button title="등록" containerStyle={{}} onPress={() => console.log("등록")} />
                 </IntroduceContainer>
 
                 <StyledText>비슷한 강좌 컨텐츠</StyledText>

@@ -10,8 +10,8 @@ import { validateEmail, removeWhitespace } from "../utils";
 import { validate } from "compare-versions";
 import axios from "axios";
 import { UserContext } from '../contexts';
-import index from '../navigations'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import index from '../navigations';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Container = styled.View`
   flex: 1;
@@ -96,10 +96,12 @@ const Signin = ({ navigation }) => {
       }).then(response => {
         console.log(response.data);
         setUser({ uid: 123124 })
-        // AsyncStorage.setItem('token', (토큰), ())
+        AsyncStorage.setItem('token', (response.data.token));
+        console.log(response.data.token);
+
       }).catch(err => {
         console.log(err);
-        Alert.alert("오류", err.message)
+        Alert.alert("오류", err.message);
       });
 
     } catch (e) {

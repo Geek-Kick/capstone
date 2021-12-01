@@ -40,7 +40,7 @@ const Signup = ({ navigation }) => {
   const refPhoneNumber = useRef(null);
   const refSchoolName = useRef(null);
   const refDidMount = useRef(null);
-  // 편법
+  // 편법 refDidMount 너무 자세하게 분석하려 하지마 애드랑 
 
   useEffect(() => {
     setDisabled(

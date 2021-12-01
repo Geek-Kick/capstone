@@ -104,7 +104,7 @@ const Lecture = ({ navigation }) => {
                 <ScrollView horizontal={true}
                     showsHorizontalScrollIndicator={true}
                 >
-                    <TouchableOpacity onPress={() => { navigation.navigate("PersonalRanking") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
