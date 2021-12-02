@@ -88,13 +88,13 @@ const Signin = ({ navigation }) => {
   // }
 
   const _axiosTestFunction = async (data) => {
+
     // post는 url 뒤에 {}로 데이터 전송 가능
     try {
       const response = await axios.post("http://13.209.8.159:5000/users/login", {
-        email,
-        password,
+        token
       }).then(response => {
-        console.log(response.data);
+        AsyncStorage.removeItem(response.data.token);
         setUser({ uid: 123124 })
         AsyncStorage.setItem('token', (response.data.token));
         console.log(response.data.token);
