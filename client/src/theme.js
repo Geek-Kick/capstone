@@ -5,6 +5,8 @@ const Colors = {
     grey_0: '#d5d5d5',
     grey_1: '#a6a6a6',
     red: '#e84118',
+    trophy: '#FFF3D6',
+    trophyback: '#111'
 }
 
 export const theme = {
@@ -39,5 +41,12 @@ export const theme = {
     //Tab
     tabBtnActive: Colors.main,
     tabBtnInactive: Colors.grey_1,
-}
 
+    //Lecture
+    gradeText: Colors.grey_1,
+    monthText: Colors.grey_1,
+
+    //Quize
+    trophyColor: Colors.trophy,
+    torphyBackground: Colors.torphyback
+}
