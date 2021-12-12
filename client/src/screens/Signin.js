@@ -87,7 +87,7 @@ const Signin = ({ navigation }) => {
   //   }
   // }
 
-  const _axiosTestFunction = async (data) => {
+  const _axiosTestFunction = async (response) => {
 
     // post는 url 뒤에 {}로 데이터 전송 가능
     try {
