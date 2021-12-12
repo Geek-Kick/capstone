@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from "styled-components/native";
 
 import { UserContext } from '../contexts';
@@ -8,6 +8,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { ScrollView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { theme } from '../theme';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 const Container = styled.View`
 flex : 1;
@@ -47,6 +49,13 @@ margin-bottom: 10px;
 const Profile = ({ navigation, route }) => {
     const { setUser } = useContext(UserContext);
     const theme = useContext(ThemeContext);
+    useEffect(async (data) => {
+        const response = await axios.get("http://13.209.8.159:5000/users/login", {
+            response
+        }).then(response => {
+            AsyncStorage.getItem('token')
+        })
+    })
     console.log(route.params);
     return (
         <KeyboardAwareScrollView extraScrollHeight={40}>

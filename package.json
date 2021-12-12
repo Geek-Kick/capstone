@@ -18,6 +18,8 @@
     "react-native-image-picker": "^4.4.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.1",
-    "react-native-unimodules": "^0.14.10"
+    "react-native-unimodules": "^0.14.10",
+    "yarn": "^1.22.17",
+    "yet": "^0.1.0"
   }
 }
