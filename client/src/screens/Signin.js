@@ -86,6 +86,7 @@ const Signin = ({ navigation }) => {
   //     console.log(e)
   //   }
   // }
+<<<<<<< HEAD
 
   const _axiosTestFunction = async (data) => {
 
@@ -99,6 +100,19 @@ const Signin = ({ navigation }) => {
         AsyncStorage.setItem('token', (response.data.token));
         console.log(response.data.token);
 
+=======
+
+  const _axiosTestFunction = async (response) => {
+
+    // post는 url 뒤에 {}로 데이터 전송 가능
+    try {
+      const response = await axios.post("http://13.209.8.159:5000/users/login", {
+        response
+      }).then(response => {
+        AsyncStorage.removeItem(response.data.token);
+        setUser({ uid: 123124 });
+        AsyncStorage.setItem('token', response.data.token);
+>>>>>>> main
       }).catch(err => {
         console.log(err);
         Alert.alert("오류", err.message);

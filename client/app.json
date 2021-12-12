@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#8E75F9"
-      }
+      },
+      "package": "com.alfy.rnchat"
     },
     "web": {
       "favicon": "./assets/favicon.png"

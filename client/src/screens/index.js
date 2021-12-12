@@ -11,4 +11,8 @@ import Community from './Community';
 import LectureClick from './LectureClick'
 
 
+<<<<<<< HEAD
 export { Signin, Signup, Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, Community, LectureClick };
+=======
+export { Signin, Signup, Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, Community, LectureClick };
+>>>>>>> main

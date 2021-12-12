@@ -10,13 +10,19 @@ import { ScrollView, HorizontalScrollView } from 'react-native'
 const Container = styled.View`
 flex : 1;
 background-color: ${({ theme }) => theme.background};
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `;
 const LectureContainer = styled.View`
 flex : 1;
 background-color: ${({ theme }) => theme.imgBtnBackground};
 border-radius : 10px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `;
 
 const RowContainer = styled.View`
@@ -30,7 +36,10 @@ padding : 5px 20px 5px 0;
 
 const ColumnContainer = styled.View`
 flex-direction: column;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `;
 const LevelContainer = styled.View`
 background-color: ${({ theme }) => theme.background};
@@ -38,7 +47,10 @@ border-width : 1px;
 border-color : ${({ theme }) => theme.imgBtnBackground};
 border-radius: 10px;
 margin : 20px 0 20px 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 width : 95%;
 `;
 const StyledText = styled.Text`
@@ -53,7 +65,10 @@ color : ${({ theme }) => theme.gradeText};
 const MonthText = styled.Text`
 font-size : 20px;
 color : ${({ theme }) => theme.monthText};
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `;
 
 

@@ -180,4 +180,4 @@ const Signup = ({ navigation }) => {
   );
 };
 
-export default Signup;
+export default Signup

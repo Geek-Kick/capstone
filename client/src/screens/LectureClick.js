@@ -20,7 +20,10 @@ justify-content: center;
 const LectureContainer = styled.View`
 flex : 1;
 background-color: ${({ theme }) => theme.background};
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `;
 
 const VideoContainer = styled.View`

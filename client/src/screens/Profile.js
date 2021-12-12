@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useContext } from 'react';
+=======
+import React, { useContext, useEffect } from 'react';
+>>>>>>> main
 import { ThemeContext } from "styled-components/native";
 
 import { UserContext } from '../contexts';
@@ -8,18 +12,29 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { ScrollView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { theme } from '../theme';
+<<<<<<< HEAD
+=======
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+>>>>>>> main
 
 const Container = styled.View`
 flex : 1;
 background-color : ${({ theme }) => theme.background};
 border-radius : 10px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `;
 const LectureContainer = styled.View`
 flex : 1;
 background-color: ${({ theme }) => theme.imgBtnBackground};
 border-radius : 10px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `
 const RowContainer = styled.View`
 flex-direction: row;
@@ -30,6 +45,7 @@ border-color : ${({ theme }) => theme.imgBtnBackground};
 padding : 0 20px;
 border-radius: 10px;
 `;
+<<<<<<< HEAD
 
 const ColumnContainer = styled.View`
 flex-direction: column;
@@ -41,6 +57,18 @@ font-size : 12px;
 font-weight: bold;
 `;
 
+=======
+
+const ColumnContainer = styled.View`
+flex-direction: column;
+`;
+
+const LvText = styled.Text`
+font-size : 12px;
+font-weight: bold;
+`;
+
+>>>>>>> main
 const StyledText = styled.Text`
 font-size : 24px;
 font-weight: bold;
@@ -50,6 +78,16 @@ margin-bottom: 10px;
 const Profile = ({ navigation, route }) => {
     const { setUser } = useContext(UserContext);
     const theme = useContext(ThemeContext);
+<<<<<<< HEAD
+=======
+    useEffect(async (data) => {
+        const response = await axios.get("http://13.209.8.159:5000/users/login", {
+            response
+        }).then(response => {
+            AsyncStorage.getItem('token')
+        })
+    })
+>>>>>>> main
     console.log(route.params);
     return (
         <KeyboardAwareScrollView extraScrollHeight={40}>

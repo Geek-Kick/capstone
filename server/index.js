@@ -29,6 +29,7 @@ app.get('/api/test', (req, res) => {
   res.send('통신 성공');
 });
 
+<<<<<<< HEAD
 const example = require('./src/api/example/exampleRoute');
 const users = require('./src/api/user/userRoute');
 const community = require('./src/api/community/communityRoute');
@@ -40,6 +41,21 @@ app.use('/users', users);
 app.use('/community', community);
 app.use('/quiz', quiz);
 app.use('/lecture', lecture);
+=======
+const example = require("./src/api/example/exampleRoute");
+const users = require("./src/api/user/userRoute");
+const community = require("./src/api/community/communityRoute");
+const quiz = require("./src/api/quiz/quizRoute");
+const lecture = require("./src/api/lecture/lectureRoute");
+const ranking = require("./src/api/ranking/rankingRoute");
+
+app.use("/example", example);
+app.use("/users", users);
+app.use("/community", community);
+app.use("/quiz", quiz);
+app.use("/lecture", lecture);
+app.use("/ranking", ranking);
+>>>>>>> main
 
 const port = process.env.SERVER_PORT;
 app.listen(port, () => console.log(`Server is listening on ${port} \n NODE_ENV = ${process.env.NODE_ENV}`));

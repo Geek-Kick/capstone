@@ -22,7 +22,10 @@ border-color : ${({ theme }) => theme.text};
 justify-content: center;
 align-items: center;
 border-radius : 30px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `
 const ListContainer = styled.View`
 margin-top : 20px;
@@ -32,7 +35,10 @@ border-width : 1px;
 border-color : ${({ theme }) => theme.text};
 justify-content: space-between;
 align-items: center;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 `
 const RealContainer = styled.View`
 flex : 0.4;

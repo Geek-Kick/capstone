@@ -49,5 +49,9 @@ export const theme = {
     //Quize
     trophyColor: Colors.trophy,
     torphyBackground: Colors.torphyback
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> main
