@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { ThemeContext } from "styled-components/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ScrollView, FlatList } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Container = styled.View`
 flex : 1;
@@ -15,9 +16,8 @@ flex-direction: row;
 const NormalContainer = styled.View`
 margin-top : 20px;
 border-width : 1px;
+justify-content : center;
 border-color : ${({ theme }) => theme.text};
-justify-content: center;
-align-items: center;
 border-radius : 30px;
 `
 
@@ -92,23 +92,7 @@ for (let i = 0; i < 1000; i++) {
     });
 }
 
-const rankItem2 = [
-    {
-        id: 1,
-        rank: "1위",
-        title: "학익고등학교"
-    },
-    {
-        id: 2,
-        rank: "2위",
-        title: "수지고등학교"
-    },
-    {
-        id: 3,
-        rank: "3위",
-        title: "기흥고등학교"
-    }
-]
+
 
 const ItemContainer = styled.TouchableOpacity`
 flex-direction : row;
@@ -120,6 +104,7 @@ padding : 15px 20px;
 
 const ItemTextContainer = styled.View`
 flex : 1;
+justify-content : space-around;
 flex-direction : row;
 `;
 
@@ -135,6 +120,8 @@ color : ${({ theme }) => theme.itemDesc};
 `;
 
 const Item = ({ item: { id, rank, title }, onPress }) => {
+    console.log(id);
+
     return (
         <ItemContainer>
             <ItemTextContainer>
@@ -150,7 +137,7 @@ const SchoolName = ({ item: { schoolName }, onPress }) => {
         <ItemTextContainer>
             <ItemTitle>{schoolName}</ItemTitle>
         </ItemTextContainer>
-    )
+    );
 }
 const MyRanking = () => {
     return (
@@ -158,9 +145,9 @@ const MyRanking = () => {
             <RealContainer style={{ margin: 20 }}>
                 <StyledText>학교 랭킹</StyledText>
                 <NormalContainer>
-                    <RankingText style={{ marginTop: 20 }}>TOP 100</RankingText>
+                    <RankingText style={{ marginTop: 20, marginLeft: 220, fontWeight: 'bold' }}>TOP 100</RankingText>
                     <FlatList
-                        data={rankItem2}
+                        data={rankItem}
                         renderItem={({ item }) => <Item item={item} />}
                         keyExtractor={item => item['id'].toString()}
                     />

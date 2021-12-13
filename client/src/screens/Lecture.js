@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Button, Image, Input } from '../components';
 import { LectureClick } from '../screens';
-import { ScrollView, HorizontalScrollView } from 'react-native'
+import { ScrollView, HorizontalScrollView, FlatList } from 'react-native'
 
 const Container = styled.View`
 flex : 1;
@@ -52,39 +52,44 @@ font-size : 20px;
 color : ${({ theme }) => theme.monthText};
 `;
 
-const rankItem = [];
-for (let i = 0; i < 1000; i++) {
-    rankItem.push({
-        id: i,
-        rank: `${i}위`,
-        title: `고등학교  ${i}`,
-    });
-}
-
-const ItemContainer = styled.TouchableOpacity`
-flex-direction : row;
+const LectureItemContainer = styled.TouchableOpacity`
 align-items : center;
-border-bottom-width : 1px;
+border-right-width : 1px;
 border-color : ${({ theme }) => theme.itemBorder};
-padding : 15px 20px;
 `;
 
-const ItemTextContainer = styled.View`
-flex : 1;
-flex-direction : column;
-`;
+const lectureItem = [];
+for (let i = 0; i < 10; i++) {
+    lectureItem.push({
+        id: i,
+        uri: "",
+        title: "",
 
-const ItemTitle = styled.Text`
-font-size : 20px;
+    })
+}
+const LectureItemImage = styled.Image`
+background-color : ${({ theme }) => theme.text}
+width : 100px;
+height : 150px;
+margin : 10px;
+`;
+const LectureItemTitle = styled.Text`
+font-size:20px;
 font-weight : 600;
 `;
 
-const ItemDesc = styled.Text`
+const LectureItemDesc = styled.Text`
 font-size : 16px;
-margin-top : 5px;
-color : ${({ theme }) => theme.itemDesc};
-`;
 
+`;
+const LectureItem = ({ item: { id, uri, title } }, onPress) => {
+    return (
+        <LectureItemContainer onPress={() => onPress({ uri, title })}>
+            <LectureItemImage uri={uri} />
+            <LectureItemTitle>{title}</LectureItemTitle>
+        </LectureItemContainer >
+    )
+}
 const Lecture = ({ navigation }) => {
     return (
         <KeyboardAwareScrollView extraScrollHeight={40}>
@@ -128,28 +133,21 @@ const Lecture = ({ navigation }) => {
                     </LevelContainer>
                 </RowContainer>
                 <StyledText >나의 맞춤 강의</StyledText>
-                <ScrollView horizontal={true}
+                <FlatList horizontal={true}
                     showsHorizontalScrollIndicator={true}
+                    data={lectureItem}
+                    renderItem={({ item }) => <LectureItem item={item} />}
                 >
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer>
-                        <Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} />
-                        <ItemTextContainer>
-                            <ItemTitle style={{ padding: 20 }}>강의명</ItemTitle>
+                    <LectureItem
+                        title="고산하의 으라차차"
+                    />
+                    <LectureItem
+                        title="ss" />
+                    <LectureItem
+                        title="ss" />
 
-                        </ItemTextContainer>
-                    </LectureContainer>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
 
-                </ScrollView>
+                </FlatList>
                 <RowContainer></RowContainer>
                 <StyledText>맞춤 강의 OOO</StyledText>
                 <ScrollView horizontal={true}
