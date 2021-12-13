@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, LectureClick } from "../screens";
+import { Profile, Ranking, RankingList, MyRanking, PersonalRanking, Lecture, Quiz, LectureClick, Signin } from "../screens";
 import Home from './Home';
 const Stack = createStackNavigator();
 
@@ -23,6 +23,7 @@ const Main = () => {
         <Stack.Screen name="Lecture" component={Lecture} />
         <Stack.Screen name="LectureClick" component={LectureClick} />
         <Stack.Screen name="Quiz" component={Quiz} />
+        <Stack.Screen name="Signin" component={Signin} />
 
     </Stack.Navigator>
 }

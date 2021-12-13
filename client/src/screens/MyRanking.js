@@ -92,6 +92,24 @@ for (let i = 0; i < 1000; i++) {
     });
 }
 
+const rankItem2 = [
+    {
+        id: 1,
+        rank: "1위",
+        title: "학익고등학교"
+    },
+    {
+        id: 2,
+        rank: "2위",
+        title: "수지고등학교"
+    },
+    {
+        id: 3,
+        rank: "3위",
+        title: "기흥고등학교"
+    }
+]
+
 const ItemContainer = styled.TouchableOpacity`
 flex-direction : row;
 align-items : center;
@@ -124,9 +142,16 @@ const Item = ({ item: { id, rank, title }, onPress }) => {
                 <ItemTitle>{title}</ItemTitle>
             </ItemTextContainer>
         </ItemContainer>
-    )
+    );
 };
 
+const SchoolName = ({ item: { schoolName }, onPress }) => {
+    return (
+        <ItemTextContainer>
+            <ItemTitle>{schoolName}</ItemTitle>
+        </ItemTextContainer>
+    )
+}
 const MyRanking = () => {
     return (
         <Container>
@@ -135,7 +160,7 @@ const MyRanking = () => {
                 <NormalContainer>
                     <RankingText style={{ marginTop: 20 }}>TOP 100</RankingText>
                     <FlatList
-                        data={rankItem}
+                        data={rankItem2}
                         renderItem={({ item }) => <Item item={item} />}
                         keyExtractor={item => item['id'].toString()}
                     />

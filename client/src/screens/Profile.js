@@ -10,6 +10,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { theme } from "../theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import { AntDesign } from '@expo/vector-icons';
 
 const Container = styled.View`
   flex: 1;
@@ -29,6 +30,42 @@ const RowContainer = styled.View`
   border-color: ${({ theme }) => theme.imgBtnBackground};
   padding: 0 20px;
   border-radius: 10px;
+`;
+
+const ItemContainer = styled.View`
+flex-direction : row ;
+align-items : center;
+border-width : 1px;
+border-color : ${({ theme }) => theme.itemBorder};
+padding : 15px 20px;
+`;
+
+const ItemTextContainer = styled.View`
+flex : 1;
+flex-direction : row;
+`;
+
+const ItemTitle = styled.Text`
+font-size : 20px;
+font-weight : 600;
+`;
+
+const ItemDesc = styled.Text`
+font-size : 16px;
+margin-top : 5px;
+color : ${({ theme }) => theme.itemDesc};
+`;
+
+const TrophyContainer = styled.View`
+background-color: ${({ theme }) => theme.trophyColor};
+border-width : 1px;
+border-color : ${({ theme }) => theme.trophyColor};
+border-radius : 50px;
+width : 80px;
+height : 80px;
+justify-content: center;
+align-items: center;
+margin : 20px;
 `;
 
 const ColumnContainer = styled.View`
@@ -105,6 +142,20 @@ const Profile = ({ navigation, route }) => {
                             }}
                             textStyle={{ fontSize: 10 }}
                         />
+                        <Button
+                            title="로그아웃 >"
+                            onPress={() => {
+                                setUser({});
+                            }}
+                            containerStyle={{
+                                backgroundColor: "#7e0000",
+                                width: 50,
+                                height: 30,
+                                marginRight: 220,
+                            }}
+                            textStyle={{ fontSize: 10 }}
+
+                        />
                     </ColumnContainer>
 
                     <Image
@@ -120,10 +171,11 @@ const Profile = ({ navigation, route }) => {
                         borderRadius: 0,
                         /* backgroundColor: "#fff", borderWidth: 1, borderColor: theme.main */
                     }}
-                    /* textStyle={{ color: theme.main }}  */
                     onPress={() => {
-                        console.log("버튼 ->");
+                        navigation.navigate("Lecture");
                     }}
+                /* textStyle={{ color: theme.main }}  */
+
                 />
                 <StyledText style={{ margin: 10 }}>수강중인 강좌</StyledText>
 
@@ -237,7 +289,11 @@ const Profile = ({ navigation, route }) => {
                 </RowContainer>
                 <StyledText style={{ margin: 10 }}>나의 랭킹</StyledText>
                 <RowContainer>
-                    <Image style={{ borderRadius: 0, width: 100, height: 100 }} />
+                    <ItemContainer>
+                        <TrophyContainer>
+                            <AntDesign name="Trophy" size={50} color="orange" />
+                        </TrophyContainer>
+                    </ItemContainer>
                 </RowContainer>
                 <StyledText style={{ margin: 10 }}>나의 퀴즈</StyledText>
                 <RowContainer>
