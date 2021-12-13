@@ -45,10 +45,9 @@ exports.login = async (req, res) => {
         .status(400)
         .json({ success: false, message: "비밀번호가 일치하지 않습니다." });
     } else {
+      // refesthToken은 후에 고려
       const { accessToken, refreshToken } = result;
-      res.cookie("accessToken", accessToken);
-      res.cookie("refreshToken", refreshToken);
-      return res.status(200).json({ success: true, message: "로그인 성공!" });
+      return res.status(200).json({ success: true, token: accessToken });
     }
   } catch (e) {
     console.log(`Controller Error\n ${e}`);
