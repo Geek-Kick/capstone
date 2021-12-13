@@ -9,8 +9,8 @@ FROM SelectedLecture
 WHERE userId = ? AND lectureId = ? AND status = 'ACTIVE';`;
 
 const postMyLectureQuery = `
-INSERT INTO SelectedLecture(userId, lectureId)
-VALUES(?, ?);`;
+INSERT INTO SelectedLecture(userId, lectureId, grade)
+VALUES(?, ?, ?);`;
 
 const patchMyLectureQuery = `
 UPDATE SelectedLecture

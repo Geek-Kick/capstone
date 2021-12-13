@@ -8,7 +8,7 @@ exports.postMyLecture = async (userId, req_body) => {
   const postMyLecture = dao.postMyLectureQuery;
   const patchMyLecture = dao.patchMyLectureQuery;
   const cancelMyLecture = dao.cancelMyLectureQuery;
-  const { lectureId } = req_body;
+  const { lectureId, grade } = req_body;
   try {
     const checkRow = await con.query(check, [userId, lectureId]);
     if (checkRow[0].length > 0) {
@@ -19,7 +19,7 @@ exports.postMyLecture = async (userId, req_body) => {
         const patchMyLectureRow = await con.query(patchMyLecture, [userId, lectureId]);
       }
     } else {
-      const postMyLectureRow = await con.query(postMyLecture, [userId, lectureId]);
+      const postMyLectureRow = await con.query(postMyLecture, [userId, lectureId, grade]);
     }
     return 1;
   } catch (e) {
