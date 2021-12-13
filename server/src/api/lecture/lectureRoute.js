@@ -12,7 +12,7 @@ router.get('/id/:lectureId/total-review', controller.lectureTotalReview); // 강
 router.post('/review', auth, controller.postReview); // 강의평 작성
 router.get('/search', controller.searchLecture); // 강의 검색
 router.get('/subject', controller.getLectureBySubject); // 과목별 강의 조회
-// router.get('/recommend', auth, controller.getRecommendLecture); // 맞춤 강의 추천
+router.get('/recommend', auth, controller.getRecommendLecture); // 맞춤 강의 추천
 router.get('/lecturer/:lecturerId', controller.getLecturerInfo); // 강사 정보 조회
 
 module.exports = router;

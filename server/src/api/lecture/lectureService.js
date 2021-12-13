@@ -175,19 +175,23 @@ exports.getLectureBySubject = async () => {
   }
 };
 
-// exports.getRecommendLecture = async userId => {
-//   const con = await pool.getConnection(conn => conn);
-//   const recommendLecture = dao.getRecommendLectureQuery;
-//   try {
-//     const recommendLectureRow = await con.query(recommendLecture, [userId]);
-//     return recommendLectureRow[0];
-//   } catch (e) {
-//     console.log(`Service error \n ${e}`);
-//     return null;
-//   } finally {
-//     con.release();
-//   }
-// };
+exports.getRecommendLecture = async (userId, req_body) => {
+  const con = await pool.getConnection(conn => conn);
+  const usersGrade = dao.getUsersGradeQuery;
+  const recommendLecture = dao.getRecommendLectureQuery;
+  const { subjectId } = req_body;
+  try {
+    const usersGradeRow = await con.query(usersGrade, [userId, subjectId]);
+    const gradeRow = usersGradeRow[0];
+    const recommendLectureRow = await con.query(recommendLecture, [subjectId, gradeRow[0].grade]);
+    return recommendLectureRow[0];
+  } catch (e) {
+    console.log(`Service error \n ${e}`);
+    return null;
+  } finally {
+    con.release();
+  }
+};
 
 exports.getLecturerInfo = async lecturerId => {
   const con = await pool.getConnection(conn => conn);
