@@ -86,17 +86,25 @@ exports.login = async (req_body) => {
 };
 
 exports.getProfile = async (userId) => {
-  const query = dao.getUserProfile;
+  const nameQuery = dao.getUserNameById;
+  const getMyLectureQuery = dao.getMyLectureQuery;
   const con = await pool.getConnection(async (conn) => conn);
-
   try {
     await con.beginTransaction();
-    const row = await con.query(query, userId);
+    var nickName = await con.query(nameQuery, userId);
+    nickName = nickName[0][0];
+    var lecuture = await con.query(getMyLectureQuery, userId);
+    // console.log(lecuture[0]);
     await con.commit();
-    return row[0];
+    const result = {
+      nickName: nickName.nickName,
+      lecuture: lecuture[0],
+    };
+    console.log(result);
+    return result;
   } catch (e) {
     await con.rollback();
-    console.log(`service Error ]n ${e}`);
+    console.log(`service Error \n ${e}`);
   } finally {
     con.release();
   }
