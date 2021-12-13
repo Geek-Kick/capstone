@@ -48,5 +48,12 @@ export const theme = {
 
     //Quize
     trophyColor: Colors.trophy,
-    torphyBackground: Colors.torphyback
+    torphyBackground: Colors.torphyback,
+
+    //FlatList
+    itemBorder: Colors.grey_0,
+    itemTime: Colors.grey_1,
+    itemDesc: Colors.grey_1,
+    itemText: Colors.text,
+
 }

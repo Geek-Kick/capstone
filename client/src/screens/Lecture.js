@@ -13,6 +13,7 @@ background-color: ${({ theme }) => theme.background};
 `;
 const LectureContainer = styled.View`
 flex : 1;
+flex-direction : column;
 background-color: ${({ theme }) => theme.imgBtnBackground};
 border-radius : 10px;
 `;
@@ -51,7 +52,38 @@ font-size : 20px;
 color : ${({ theme }) => theme.monthText};
 `;
 
+const rankItem = [];
+for (let i = 0; i < 1000; i++) {
+    rankItem.push({
+        id: i,
+        rank: `${i}위`,
+        title: `고등학교  ${i}`,
+    });
+}
 
+const ItemContainer = styled.TouchableOpacity`
+flex-direction : row;
+align-items : center;
+border-bottom-width : 1px;
+border-color : ${({ theme }) => theme.itemBorder};
+padding : 15px 20px;
+`;
+
+const ItemTextContainer = styled.View`
+flex : 1;
+flex-direction : column;
+`;
+
+const ItemTitle = styled.Text`
+font-size : 20px;
+font-weight : 600;
+`;
+
+const ItemDesc = styled.Text`
+font-size : 16px;
+margin-top : 5px;
+color : ${({ theme }) => theme.itemDesc};
+`;
 
 const Lecture = ({ navigation }) => {
     return (
@@ -95,11 +127,18 @@ const Lecture = ({ navigation }) => {
                         <Input></Input>
                     </LevelContainer>
                 </RowContainer>
-                <StyledText >인기 강좌</StyledText>
+                <StyledText >나의 맞춤 강의</StyledText>
                 <ScrollView horizontal={true}
                     showsHorizontalScrollIndicator={true}
                 >
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer>
+                        <Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} />
+                        <ItemTextContainer>
+                            <ItemTitle style={{ padding: 20 }}>강의명</ItemTitle>
+
+                        </ItemTextContainer>
+                    </LectureContainer>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 150, margin: 10 }} /></LectureContainer></TouchableOpacity>
@@ -132,7 +171,10 @@ const Lecture = ({ navigation }) => {
                 <ScrollView horizontal={true}
                     showsHorizontalScrollIndicator={true}
                 >
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}>
+                        <LectureContainer>
+                            <Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} />
+                            <MonthText></MonthText></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
