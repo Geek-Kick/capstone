@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "styled-components/native";
 
-import { UserContext } from "../contexts";
+import { UserContext } from "../../contexts";
 import styled from "styled-components/native";
-import { Button, Image, Input } from "../components";
+import { Button, Image, Input } from "../../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { theme } from "../theme";
+import { theme } from "../../theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
@@ -49,6 +49,11 @@ const StyledText = styled.Text`
 const Profile = ({ navigation, route }) => {
   const { setUser } = useContext(UserContext);
   const theme = useContext(ThemeContext);
+  const [name, setName] = useState(null);
+  const [lecture, setLecture] = useState({
+    image: null,
+    link: null,
+  });
   useEffect(async () => {
     AsyncStorage.getItem("token", (err, result) => {
       if (err) {
@@ -64,6 +69,9 @@ const Profile = ({ navigation, route }) => {
           })
           .then((response) => {
             console.log(response.data);
+            const userInfo = response.data[0];
+            console.log(userInfo.nickName);
+            setName(userInfo.nickName);
           })
           .catch((err) => {
             console.log(err);
@@ -89,7 +97,7 @@ const Profile = ({ navigation, route }) => {
           <ColumnContainer>
             <Input
               label="사용자 이름"
-              value="박상호"
+              value={name}
               containerStyle={{ height: 10 }}
               style={{ width: 300, height: 55 }}
             />

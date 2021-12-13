@@ -20,8 +20,8 @@ SELECT * FROM User
 WHERE email = ?
 `;
 
-const getUserProfile = `
-SELECT * FROM User
+const getUserNameById = `
+SELECT nickName FROM User
 WHERE id = ?
 `;
 
@@ -39,13 +39,32 @@ WHERE id = ?
 
 const getUserImageQuery = `SELECT imageUrl FROM User WHERE id = ?`;
 
+const getMyLectureQuery = `
+SELECT b.id as lectureId
+    , b.name as lectureName
+    , b.lecturerId as lecturer
+    , b.imageUrl as lectureImage
+    , b.link as lectureLink
+    , c.name as subject
+    , CONCAT(DATE_FORMAT(a.createdAt, "%Y-%m-%d")," ~ ") as createdAt
+FROM SelectedLecture a
+LEFT JOIN ( SELECT id, name, lecturerId, imageUrl, subjectId, link
+            FROM Lecture ) as b
+            ON a.lectureId = b.id
+LEFT JOIN ( SELECT id, name
+            FROM Subject ) as c
+            ON b.subjectId = c.id
+WHERE a.userId = ? AND a.status = 'ACTIVE'
+ORDER BY c.id ASC, a.createdAt DESC;`;
+
 module.exports = {
   duplicateTestQuery,
   singInDao,
   singInUpdateStudentNum,
   getUserByEamilQuery,
-  getUserProfile,
+  getUserNameById,
   updateUserQuery,
   updateUserImageQeury,
   getUserImageQuery,
+  getMyLectureQuery,
 };
