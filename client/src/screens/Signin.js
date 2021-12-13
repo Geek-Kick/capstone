@@ -10,7 +10,8 @@ import { validateEmail, removeWhitespace } from "../utils";
 import { validate } from "compare-versions";
 import axios from "axios";
 import { UserContext } from '../contexts';
-import index from '../navigations'
+import index from '../navigations';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Container = styled.View`
   flex: 1;
@@ -23,7 +24,7 @@ const Container = styled.View`
 `;
 
 const LOGO =
-  "https://firebasestorage.googleapis.com/v0/b/rn-chat-fb183.appspot.com/o/logo.png?alt=media";
+  "https://firebasestorage.googleapis.com/v0/b/rn-chat-fb183.appspot.com/o/icon.png?alt=media";
 
 const Signin = ({ navigation }) => {
   const insets = useSafeAreaInsets();
@@ -86,18 +87,19 @@ const Signin = ({ navigation }) => {
   //   }
   // }
 
-  const _axiosTestFunction = async (data) => {
+  const _axiosTestFunction = async (response) => {
+
     // post는 url 뒤에 {}로 데이터 전송 가능
     try {
       const response = await axios.post("http://13.209.8.159:5000/users/login", {
-        email,
-        password,
+        response
       }).then(response => {
-        console.log(response.data);
-        setUser({ uid: 123124 })
+        AsyncStorage.removeItem(response.data.token);
+        setUser({ uid: 123124 });
+        AsyncStorage.setItem('token', response.data.token);
       }).catch(err => {
         console.log(err);
-        Alert.alert("오류", err.message)
+        Alert.alert("오류", err.message);
       });
 
     } catch (e) {
