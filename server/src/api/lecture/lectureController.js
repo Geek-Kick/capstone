@@ -117,16 +117,17 @@ exports.getLectureBySubject = async (req, res) => {
   }
 };
 
-// exports.getRecommendLecture = async (req, res) => {
-//   const userId = req.userId;
-//   try {
-//     const result = await service.getRecommendLecture(userId);
-//     return res.status(200).send(result);
-//   } catch (e) {
-//     console.log(`controller error \n ${e}`);
-//     return res.status(400).json({ success: false, message: e.message });
-//   }
-// };
+exports.getRecommendLecture = async (req, res) => {
+  const userId = req.userId;
+  const req_body = req.body;
+  try {
+    const result = await service.getRecommendLecture(userId, req_body);
+    return res.status(200).send(result);
+  } catch (e) {
+    console.log(`controller error \n ${e}`);
+    return res.status(400).json({ success: false, message: e.message });
+  }
+};
 
 exports.getLecturerInfo = async (req, res) => {
   const lecturerId = req.params.lecturerId;
