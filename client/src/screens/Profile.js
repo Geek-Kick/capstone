@@ -49,12 +49,16 @@ margin-bottom: 10px;
 const Profile = ({ navigation, route }) => {
     const { setUser } = useContext(UserContext);
     const theme = useContext(ThemeContext);
-    useEffect(async (data) => {
+    useEffect(async () => {
+        console.log("Token 받아오기");
         const response = await axios.get("http://13.209.8.159:5000/users/login", {
             response
         }).then(response => {
             AsyncStorage.getItem('token')
         })
+        return () => {
+            console.log("bye");
+        }
     })
     console.log(route.params);
     return (
