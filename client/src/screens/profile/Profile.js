@@ -10,6 +10,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { theme } from "../../theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import ProfileLectureCard from "./components/ProfileLectureCard";
 
 const Container = styled.View`
   flex: 1;
@@ -50,10 +51,7 @@ const Profile = ({ navigation, route }) => {
   const { setUser } = useContext(UserContext);
   const theme = useContext(ThemeContext);
   const [name, setName] = useState(null);
-  const [lecture, setLecture] = useState({
-    image: null,
-    link: null,
-  });
+  const [lecture, setLecture] = useState();
   useEffect(async () => {
     AsyncStorage.getItem("token", (err, result) => {
       if (err) {
@@ -72,6 +70,8 @@ const Profile = ({ navigation, route }) => {
             const userInfo = response.data[0];
             console.log(userInfo.nickName);
             setName(userInfo.nickName);
+            setLecture(userInfo.lecuture);
+            console.log(lecture);
           })
           .catch((err) => {
             console.log(err);
@@ -136,83 +136,8 @@ const Profile = ({ navigation, route }) => {
         <StyledText style={{ margin: 10 }}>수강중인 강좌</StyledText>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("LectureClick");
-            }}
-          >
-            <LectureContainer>
-              <Image
-                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
-              />
-            </LectureContainer>
-          </TouchableOpacity>
+          <ProfileLectureCard lectures={lecture} />
+
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("LectureClick");

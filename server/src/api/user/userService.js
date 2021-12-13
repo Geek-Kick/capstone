@@ -93,12 +93,12 @@ exports.getProfile = async (userId) => {
     await con.beginTransaction();
     var nickName = await con.query(nameQuery, userId);
     nickName = nickName[0][0];
-    var lecuture = await con.query(getMyLectureQuery, userId);
+    var lecture = await con.query(getMyLectureQuery, userId);
     // console.log(lecuture[0]);
     await con.commit();
     const result = {
       nickName: nickName.nickName,
-      lecuture: lecuture[0],
+      lecture: lecture[0],
     };
     console.log(result);
     return result;
