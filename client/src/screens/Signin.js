@@ -87,25 +87,21 @@ const Signin = ({ navigation }) => {
   //   }
   // }
 
-  const _axiosTestFunction = async (response) => {
-
+  const _handleLoginBtnPress = async () => {
     // post는 url 뒤에 {}로 데이터 전송 가능
-    try {
-      const response = await axios.post("http://13.209.8.159:5000/users/login", {
-        response
-      }).then(response => {
-        AsyncStorage.removeItem(response.data.token);
-        setUser({ uid: 123124 });
-        AsyncStorage.setItem('token', response.data.token);
-      }).catch(err => {
-        console.log(err);
-        Alert.alert("오류", err.message);
-      });
-
-    } catch (e) {
-      console.log(e.response.data);
-    }
+    await axios.post("http://13.209.8.159:5000/users/login", {
+      email,
+      password
+    }).then(response => {
+      AsyncStorage.removeItem(response.data.token);
+      setUser({ uid: 123124 });
+      AsyncStorage.setItem('token', response.data.token);
+    }).catch(err => {
+      console.log(err);
+      Alert.alert("오류", err.message);
+    });
   };
+
   return (
     <KeyboardAwareScrollView
       extraScrollHeight={40}
@@ -129,13 +125,13 @@ const Signin = ({ navigation }) => {
           value={password}
           onChangeText={_handlePasswordChange}
           isPassword={true}
-          onSubmitEditing={_axiosTestFunction}
+          onSubmitEditing={_handleLoginBtnPress}
         />
         <ErrorMessage message={errorMessage} />
         <Button
           title="로그인"
           //   onPress={_handleSigninBtnPress}
-          onPress={_axiosTestFunction}
+          onPress={_handleLoginBtnPress}
           disabled={disabled}
         />
         <Button
