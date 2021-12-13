@@ -6,10 +6,10 @@ import Main from "./Main";
 import { Spinner } from "../components";
 
 const Navigation = () => {
-  const { user } = useContext(UserContext);
-  return (
-    <NavigationContainer>{user.uid ? <Main /> : <Auth />}</NavigationContainer>
-  );
+    const { user } = useContext(UserContext);
+    return (
+        <NavigationContainer>{user.uid ? <Main /> : <Auth />}</NavigationContainer>
+    );
 };
 
 export default Navigation;
