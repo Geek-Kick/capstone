@@ -153,19 +153,18 @@ exports.searchLecture = async (lectureKeyword, lecturerKeyword) => {
   }
 };
 
-exports.getLectureBySubject = async () => {
+exports.getLectureBySubject = async req_body => {
   const con = await pool.getConnection(conn => conn);
   const lectureBySubject = dao.lectureBySubjectQuery;
   const subjectName = dao.subjectNameQuery;
+  const { subjectId } = req_body;
   const result = [];
   try {
-    for (let i = 1; i <= 22; i++) {
-      const subjectNameRow = await con.query(subjectName, [i]);
-      const lectureBySubjectRow = await con.query(lectureBySubject, [i]);
-      const subject = subjectNameRow[0];
-      subject.push(lectureBySubjectRow[0]);
-      result.push(subject);
-    }
+    const subjectNameRow = await con.query(subjectName, [subjectId]);
+    const lectureBySubjectRow = await con.query(lectureBySubject, [subjectId]);
+    const subject = subjectNameRow[0];
+    subject.push(lectureBySubjectRow[0]);
+    result.push(subject);
     return result;
   } catch (e) {
     console.log(`Service error \n ${e}`);

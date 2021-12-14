@@ -108,8 +108,9 @@ exports.searchLecture = async (req, res) => {
 };
 
 exports.getLectureBySubject = async (req, res) => {
+  const req_body = req.body;
   try {
-    const result = await service.getLectureBySubject();
+    const result = await service.getLectureBySubject(req_body);
     return res.status(200).send(result);
   } catch (e) {
     console.log(`controller error \n ${e}`);
