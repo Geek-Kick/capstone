@@ -84,7 +84,7 @@ padding : 5px 20px 5px 0;
 `;
 
 const rankItem = [];
-for (let i = 0; i < 1000; i++) {
+for (let i = 1; i < 100; i++) {
     rankItem.push({
         id: i,
         rank: `${i}위`,
@@ -158,15 +158,15 @@ const MyRanking = () => {
                 <StyledText>학교 내 나의 랭킹</StyledText>
                 <RankingContainer style={{ justifyContent: 'space-around' }}>
                     <TrophyContainer /><TextContainer>
-                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>???</RankingText></RowContainer>
+                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>340위</RankingText></RowContainer>
                     </TextContainer>
-                    <StyledText>ㅁㅁ고등학교</StyledText>
+                    <StyledText>학익고등학교</StyledText>
                 </RankingContainer>
                 <StyledText>과목 내 나의 랭킹</StyledText>
                 <RankingContainer>
                     <TrophyContainer /><TextContainer>
 
-                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>???</RankingText></RowContainer>
+                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>2405위</RankingText></RowContainer>
                     </TextContainer>
                     <StyledText>국어</StyledText>
                 </RankingContainer>
@@ -174,7 +174,7 @@ const MyRanking = () => {
                 <RankingContainer>
                     <TrophyContainer /><TextContainer>
 
-                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>???</RankingText></RowContainer>
+                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>1022위</RankingText></RowContainer>
                     </TextContainer>
                     <StyledText>용인</StyledText>
                 </RankingContainer>

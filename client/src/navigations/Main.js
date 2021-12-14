@@ -12,7 +12,7 @@ const Main = () => {
         screenOptions={{
             headerTitleAlign: 'center',
             headerTintColor: theme.main,
-            headerBackTitleVisible: false,
+            headerBackTitleVisible: true,
             cardStyle: { backgroundColor: theme.background },
 
         }}>

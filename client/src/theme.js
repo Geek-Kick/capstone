@@ -6,7 +6,9 @@ const Colors = {
     grey_1: '#a6a6a6',
     red: '#e84118',
     trophy: '#FFF3D6',
-    trophyback: '#111'
+    trophyback: '#111',
+    review: '#EFEBFF',
+    star: '#F8C646'
 }
 
 export const theme = {
@@ -56,4 +58,7 @@ export const theme = {
     itemDesc: Colors.grey_1,
     itemText: Colors.text,
 
+    //Review
+    reviewBackground: Colors.review,
+    star: Colors.star,
 }

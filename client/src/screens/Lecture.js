@@ -18,6 +18,7 @@ background-color: ${({ theme }) => theme.imgBtnBackground};
 border-radius : 10px;
 `;
 
+
 const RowContainer = styled.View`
 flex-direction: row;
 align-items: flex-start;
@@ -80,12 +81,12 @@ font-weight : 600;
 
 const LectureItemDesc = styled.Text`
 font-size : 16px;
-
+color : ${({ theme }) => theme.itemDesc};
 `;
-const LectureItem = ({ item: { id, uri, title } }, onPress) => {
+const LectureItem = ({ id, url, title }, onPress) => {
     return (
-        <LectureItemContainer onPress={() => onPress({ uri, title })}>
-            <LectureItemImage uri={uri} />
+        <LectureItemContainer onPress={onPress}>
+            <LectureItemImage url={url} />
             <LectureItemTitle>{title}</LectureItemTitle>
         </LectureItemContainer >
     )
@@ -133,27 +134,26 @@ const Lecture = ({ navigation }) => {
                     </LevelContainer>
                 </RowContainer>
                 <StyledText >나의 맞춤 강의</StyledText>
-                <FlatList horizontal={true}
-                    showsHorizontalScrollIndicator={true}
-                    data={lectureItem}
-                    renderItem={({ item }) => <LectureItem item={item} />}
-                >
-                    <LectureItem
-                        title="고산하의 으라차차"
-                    />
-                    <LectureItem
-                        title="ss" />
-                    <LectureItem
-                        title="ss" />
-
-
-                </FlatList>
-                <RowContainer></RowContainer>
-                <StyledText>맞춤 강의 OOO</StyledText>
                 <ScrollView horizontal={true}
                     showsHorizontalScrollIndicator={true}
                 >
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
+                    <LectureContainer>
+                        <LectureItemImage
+                            url="https://image.ebsi.co.kr/images/teacher_new/@/T0031.png" />
+                    </LectureContainer>
+                </ScrollView>
+                <RowContainer></RowContainer>
+                <StyledText>맞춤 강의</StyledText>
+                <ScrollView horizontal={true}
+                    showsHorizontalScrollIndicator={true}
+                >
+                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}>
+                        <LectureContainer>
+                            <Image
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0591.png"
+                                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
+                            />
+                        </LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
                     <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
@@ -169,19 +169,7 @@ const Lecture = ({ navigation }) => {
                 <ScrollView horizontal={true}
                     showsHorizontalScrollIndicator={true}
                 >
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}>
-                        <LectureContainer>
-                            <Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} />
-                            <MonthText></MonthText></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
+
                 </ScrollView>
                 <RowContainer></RowContainer>
                 <StyledText>맞춤 강의 OOO</StyledText>
