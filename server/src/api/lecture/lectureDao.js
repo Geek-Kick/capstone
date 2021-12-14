@@ -47,7 +47,8 @@ ORDER BY c.id ASC, a.createdAt DESC;`;
 const getPopularLectureQuery = `
 SELECT a.id as lectureId
     , a.name as lectureName
-    , a.lecturer as lecturer
+    , a.lecturerId as lecturerId
+    , d.name as lecturerName
     , a.imageUrl as lectureImage
     , a.link as lectureLink
     , c.name as subject
@@ -60,6 +61,9 @@ LEFT JOIN ( SELECT id, userId, lectureId, count(lectureId) as 'selectCount'
 LEFT JOIN ( SELECT id, name
             FROM Subject ) as c
             ON a.subjectId = c.id
+LEFT JOIN ( SELECT id, name
+            FROM Lecturer ) as d
+            ON a.lecturerId = d.id
 ORDER BY selectCount DESC LIMIT 10;`;
 
 const getPopularLecturerQuery = `
