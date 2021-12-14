@@ -16,7 +16,7 @@ exports.postMyLecture = async (userId, req_body) => {
       if (checkStatusRow[0].length > 0) {
         const cancelMyLectureRow = await con.query(cancelMyLecture, [userId, lectureId]);
       } else {
-        const patchMyLectureRow = await con.query(patchMyLecture, [userId, lectureId]);
+        const patchMyLectureRow = await con.query(patchMyLecture, [grade, userId, lectureId]);
       }
     } else {
       const postMyLectureRow = await con.query(postMyLecture, [userId, lectureId, grade]);

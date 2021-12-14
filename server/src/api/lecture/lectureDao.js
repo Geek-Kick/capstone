@@ -14,7 +14,7 @@ VALUES(?, ?, ?);`;
 
 const patchMyLectureQuery = `
 UPDATE SelectedLecture
-SET status = 'ACTIVE'
+SET status = 'ACTIVE', grade = ?
 WHERE userId = ? AND lectureId = ?;`;
 
 const cancelMyLectureQuery = `
