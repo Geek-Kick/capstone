@@ -25,18 +25,22 @@ WHERE userId = ? AND lectureId = ?;`;
 const getMyLectureQuery = `
 SELECT b.id as lectureId
     , b.name as lectureName
-    , b.lecturer as lecturer
+    , b.lecturerId as lecturerId
+    , d.name as lecturerName
     , b.imageUrl as lectureImage
     , b.link as lectureLink
     , c.name as subject
     , CONCAT(DATE_FORMAT(a.createdAt, "%Y-%m-%d")," ~ ") as createdAt
 FROM SelectedLecture a
-LEFT JOIN ( SELECT id, name, lecturer, imageUrl, subjectId, link
+LEFT JOIN ( SELECT id, name, lecturerId, imageUrl, subjectId, link
             FROM Lecture ) as b
             ON a.lectureId = b.id
 LEFT JOIN ( SELECT id, name
             FROM Subject ) as c
             ON b.subjectId = c.id
+LEFT JOIN ( SELECT id, name
+            FROM Lecturer ) as d
+            ON a.lectureId = d.id
 WHERE a.userId = ? AND a.status = 'ACTIVE'
 ORDER BY c.id ASC, a.createdAt DESC;`;
 
