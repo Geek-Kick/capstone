@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { ThemeContext } from "styled-components/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ScrollView, FlatList } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Container = styled.View`
 flex : 1;
@@ -15,9 +16,8 @@ flex-direction: row;
 const NormalContainer = styled.View`
 margin-top : 20px;
 border-width : 1px;
+justify-content : center;
 border-color : ${({ theme }) => theme.text};
-justify-content: center;
-align-items: center;
 border-radius : 30px;
 `
 
@@ -84,13 +84,15 @@ padding : 5px 20px 5px 0;
 `;
 
 const rankItem = [];
-for (let i = 0; i < 1000; i++) {
+for (let i = 1; i < 100; i++) {
     rankItem.push({
         id: i,
         rank: `${i}위`,
         title: `고등학교  ${i}`,
     });
 }
+
+
 
 const ItemContainer = styled.TouchableOpacity`
 flex-direction : row;
@@ -102,6 +104,7 @@ padding : 15px 20px;
 
 const ItemTextContainer = styled.View`
 flex : 1;
+justify-content : space-around;
 flex-direction : row;
 `;
 
@@ -117,6 +120,8 @@ color : ${({ theme }) => theme.itemDesc};
 `;
 
 const Item = ({ item: { id, rank, title }, onPress }) => {
+    console.log(id);
+
     return (
         <ItemContainer>
             <ItemTextContainer>
@@ -124,16 +129,23 @@ const Item = ({ item: { id, rank, title }, onPress }) => {
                 <ItemTitle>{title}</ItemTitle>
             </ItemTextContainer>
         </ItemContainer>
-    )
+    );
 };
 
+const SchoolName = ({ item: { schoolName }, onPress }) => {
+    return (
+        <ItemTextContainer>
+            <ItemTitle>{schoolName}</ItemTitle>
+        </ItemTextContainer>
+    );
+}
 const MyRanking = () => {
     return (
         <Container>
             <RealContainer style={{ margin: 20 }}>
                 <StyledText>학교 랭킹</StyledText>
                 <NormalContainer>
-                    <RankingText style={{ marginTop: 20 }}>TOP 100</RankingText>
+                    <RankingText style={{ marginTop: 20, marginLeft: 220, fontWeight: 'bold' }}>TOP 100</RankingText>
                     <FlatList
                         data={rankItem}
                         renderItem={({ item }) => <Item item={item} />}
@@ -146,15 +158,15 @@ const MyRanking = () => {
                 <StyledText>학교 내 나의 랭킹</StyledText>
                 <RankingContainer style={{ justifyContent: 'space-around' }}>
                     <TrophyContainer /><TextContainer>
-                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>???</RankingText></RowContainer>
+                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>340위</RankingText></RowContainer>
                     </TextContainer>
-                    <StyledText>ㅁㅁ고등학교</StyledText>
+                    <StyledText>학익고등학교</StyledText>
                 </RankingContainer>
                 <StyledText>과목 내 나의 랭킹</StyledText>
                 <RankingContainer>
                     <TrophyContainer /><TextContainer>
 
-                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>???</RankingText></RowContainer>
+                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>2405위</RankingText></RowContainer>
                     </TextContainer>
                     <StyledText>국어</StyledText>
                 </RankingContainer>
@@ -162,7 +174,7 @@ const MyRanking = () => {
                 <RankingContainer>
                     <TrophyContainer /><TextContainer>
 
-                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>???</RankingText></RowContainer>
+                        <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>1022위</RankingText></RowContainer>
                     </TextContainer>
                     <StyledText>용인</StyledText>
                 </RankingContainer>
