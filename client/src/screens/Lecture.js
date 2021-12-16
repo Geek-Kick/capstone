@@ -58,7 +58,16 @@ align-items : center;
 border-right-width : 1px;
 border-color : ${({ theme }) => theme.itemBorder};
 `;
+const ItemTitle = styled.Text`
+font-size : 20px;
+font-weight : 600;
+`;
 
+const ItemDesc = styled.Text`
+font-size : 16px;
+margin-top : 5px;
+color : ${({ theme }) => theme.itemDesc};
+`;
 const lectureItem = [];
 for (let i = 0; i < 10; i++) {
     lectureItem.push({
@@ -134,35 +143,107 @@ const Lecture = ({ navigation }) => {
                     </LevelContainer>
                 </RowContainer>
                 <StyledText >나의 맞춤 강의</StyledText>
-                <ScrollView horizontal={true}
-                    showsHorizontalScrollIndicator={true}
-                >
-                    <LectureContainer>
-                        <LectureItemImage
-                            url="https://image.ebsi.co.kr/images/teacher_new/@/T0031.png" />
-                    </LectureContainer>
-                </ScrollView>
-                <RowContainer></RowContainer>
-                <StyledText>맞춤 강의</StyledText>
-                <ScrollView horizontal={true}
-                    showsHorizontalScrollIndicator={true}
-                >
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
                         <LectureContainer>
                             <Image
-                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0591.png"
-                                style={{ borderRadius: 0, width: 100, height: 100, margin: 20 }}
+                                style={{ borderRadius: 0, width: 100, height: 100 }}
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0031.png"
                             />
-                        </LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.navigate("LectureClick") }}><LectureContainer><Image style={{ borderRadius: 0, width: 100, height: 200, margin: 20 }} /></LectureContainer></TouchableOpacity>
+                            <ItemTitle>개념의 나비효과</ItemTitle>
+                            <ItemDesc>윤혜정</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
+                        <LectureContainer>
+                            <Image
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0251.png"
+                                style={{ borderRadius: 0, width: 100, height: 100, }}
+                            />
+                            <ItemTitle>찹쌀떡 수학l</ItemTitle>
+                            <ItemDesc>정유빈</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
+                        <LectureContainer>
+                            <Image
+                                style={{ borderRadius: 0, width: 100, height: 100, }}
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0119.png"
+                            />
+                            <ItemTitle>개기일식</ItemTitle>
+                            <ItemDesc>남궁민</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
+                        <LectureContainer>
+                            <Image
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0353.png"
+                                style={{ borderRadius: 0, width: 100, height: 100, }}
+                            />
+                            <ItemTitle>국어 담판</ItemTitle>
+                            <ItemDesc>최서희</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
+                        <LectureContainer>
+                            <Image
+                                style={{ borderRadius: 0, width: 100, height: 100 }}
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0248.png"
+                            />
+                            <ItemTitle>꽉잡는 문학개념</ItemTitle>
+                            <ItemDesc>곽동훈</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
+                        <LectureContainer>
+                            <Image
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0103.png"
+                                style={{ borderRadius: 0, width: 100, height: 100, }}
+                            />
+                            <ItemTitle>프러포즈 수학ll</ItemTitle>
+                            <ItemDesc>심주석</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("LectureClick");
+                        }}
+                    >
+                        <LectureContainer>
+                            <Image
+                                url="https://image.ebsi.co.kr/images/teacher_new/@/T0023.png"
+                                style={{ borderRadius: 0, width: 100, height: 100, }}
+                            />
+                            <ItemTitle>마법구문독해</ItemTitle>
+                            <ItemDesc>이아영</ItemDesc>
+                        </LectureContainer>
+                    </TouchableOpacity>
+
                 </ScrollView>
                 <RowContainer></RowContainer>
                 <StyledText>맞춤 강의 OOO</StyledText>
