@@ -18,7 +18,6 @@ const Home = ({ navigation, route }) => {
     useEffect(() => {
         const screenName = getFocusedRouteNameFromRoute(route) || 'ALFY';
         navigation.setOptions({
-            headerTitle: screenName
         });
     })
     return (
