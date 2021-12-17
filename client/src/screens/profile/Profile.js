@@ -146,13 +146,11 @@ const Profile = ({ navigation, route }) => {
   const theme = useContext(ThemeContext);
   const [name, setName] = useState(null);
   const [lecture, setLecture] = useState();
-  useEffect(async () => {
+  useEffect(() => {
     AsyncStorage.getItem("token", (err, result) => {
       if (err) {
-        console.log("storeage");
         console.log(err);
       } else {
-        console.log("before axios");
         axios
           .get("http://13.209.8.159:5000/users/profile", {
             headers: {
@@ -161,29 +159,16 @@ const Profile = ({ navigation, route }) => {
           })
           .then((response) => {
             console.log(response.data);
-            const userInfo = response.data[0];
-            console.log(userInfo.nickName);
-            setName(userInfo.nickName);
-            setLecture(userInfo.lecuture);
-            console.log(lecture);
+            setName(response.data.nickName);
+            setLecture(response.data.lecuture);
           })
           .catch((err) => {
             console.log(err);
           });
       }
     });
-    // const response = await axios
-    //   .get("http://13.209.8.159:5000/users/login", {
-    //     response,
-    //   })
-    //   .then((response) => {
-    //     AsyncStorage.getItem("token");
-    //   });
-    return () => {
-      console.log("bye");
-    };
-  });
-  console.log(route.params);
+  }, []);
+  // console.log(route.params);
   return (
     <KeyboardAwareScrollView extraScrollHeight={40}>
       <Container style={{ margin: 20 }}>
@@ -243,7 +228,8 @@ const Profile = ({ navigation, route }) => {
         <StyledText style={{ margin: 10 }}>수강중인 강좌</StyledText>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-          <TouchableOpacity
+          <ProfileLectureCard lectures={lecture} />
+          {/* <TouchableOpacity
             onPress={() => {
               navigation.navigate("LectureClick");
             }}
@@ -341,7 +327,7 @@ const Profile = ({ navigation, route }) => {
               <ItemTitle>마법구문독해</ItemTitle>
               <ItemDesc>이아영</ItemDesc>
             </LectureContainer>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </ScrollView>
         <RowContainer></RowContainer>
         <StyledText style={{ margin: 10 }}>나의 수강평</StyledText>
