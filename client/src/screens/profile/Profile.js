@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "styled-components/native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { UserContext } from "../../contexts";
 import styled from "styled-components/native";
@@ -11,6 +11,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { theme } from "../../theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import ProfileLectureCard from "./components/ProfileLectureCard";
 
 const Container = styled.View`
   flex: 1;
@@ -18,10 +19,10 @@ const Container = styled.View`
   border-radius: 10px;
 `;
 const LectureContainer = styled.View`
-align-items : center;
-border-right-width : 1px;
-padding :0 10px 0 10px;
-border-color : ${({ theme }) > theme.itemDesc};
+  align-items: center;
+  border-right-width: 1px;
+  padding: 0 10px 0 10px;
+  border-color: ${{ theme } > theme.itemDesc};
 `;
 const RowContainer = styled.View`
   flex-direction: row;
@@ -34,101 +35,99 @@ const RowContainer = styled.View`
 `;
 
 const ItemContainer = styled.View`
-flex-direction : row ;
-align-items : center;
-border-width : 1px;
-border-color : ${({ theme }) => theme.itemBorder};
-padding : 15px 20px;
+  flex-direction: row;
+  align-items: center;
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.itemBorder};
+  padding: 15px 20px;
 `;
 
 const ItemTextContainer = styled.View`
-flex : 1;
-flex-direction : row;
+  flex: 1;
+  flex-direction: row;
 `;
 
 const ItemTitle = styled.Text`
-font-size : 20px;
-font-weight : 600;
+  font-size: 20px;
+  font-weight: 600;
 `;
 
 const ItemDesc = styled.Text`
-font-size : 16px;
-margin-top : 5px;
-color : ${({ theme }) => theme.itemDesc};
+  font-size: 16px;
+  margin-top: 5px;
+  color: ${({ theme }) => theme.itemDesc};
 `;
-
 
 const ReviewTextContainer = styled.View`
-flex-direction : row;
-justify-content : flex-start;
-align-items : center;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 `;
 const ReviewTitle = styled.Text`
-font-size : 18px;
-font-weight : 600;
-`
+  font-size: 18px;
+  font-weight: 600;
+`;
 
 const ReviewDesc = styled.Text`
-font-size : 16px;
-color : ${({ theme }) => theme.itemDesc};
-margin-top : 5px;
-
+  font-size: 16px;
+  color: ${({ theme }) => theme.itemDesc};
+  margin-top: 5px;
 `;
 
 const ReviewTime = styled.Text`
-font-size : 12px;
-color : ${({ theme }) => theme.itemDesc};
+  font-size: 12px;
+  color: ${({ theme }) => theme.itemDesc};
 `;
 const MyReviewContainer = styled.View`
-flex-direction : row;
-justify-content : space-around;
+  flex-direction: row;
+  justify-content: space-around;
 `;
 const ReviewContainer = styled.View`
-flex : 0.4;
-background-color: ${({ theme }) => theme.reviewBackground};
-border-width : 1px;
-border-color : ${({ theme }) => theme.itemDesc};
-border-radius : 10px;
-margin-top: 0px;
-padding : 7px 20px 20px 20px;
-justify-content : center;
+  flex: 0.4;
+  background-color: ${({ theme }) => theme.reviewBackground};
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.itemDesc};
+  border-radius: 10px;
+  margin-top: 0px;
+  padding: 7px 20px 20px 20px;
+  justify-content: center;
 `;
 const ColumnContainer = styled.View`
   flex-direction: column;
 `;
 const TrophyContainer = styled.View`
-background-color: ${({ theme }) => theme.trophyColor};
-border-width : 1px;
-border-color : ${({ theme }) => theme.trophyColor};
-border-radius : 50px;
-width : 80px;
-height : 80px;
-justify-content: center;
-align-items: center;
-margin : 20px;
+  background-color: ${({ theme }) => theme.trophyColor};
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.trophyColor};
+  border-radius: 50px;
+  width: 80px;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 `;
 
 const RankingContainer = styled.View`
-flex-direction: row;
-background-color: ${({ theme }) => theme.background};
-border-width : 1px;
-border-color : ${({ theme }) => theme.imgBtnBackground};
-border-radius: 10px;
-margin : 20px 0 20px 20px;
-width : 95%;
-justify-content: space-around;
-align-items: center;
+  flex-direction: row;
+  background-color: ${({ theme }) => theme.background};
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.imgBtnBackground};
+  border-radius: 10px;
+  margin: 20px 0 20px 20px;
+  width: 95%;
+  justify-content: space-around;
+  align-items: center;
 `;
 const TextContainer = styled.View`
-background-color: ${({ theme }) => theme.background};
-align-items: center;
-border-radius : 10px;
+  background-color: ${({ theme }) => theme.background};
+  align-items: center;
+  border-radius: 10px;
 `;
 
 const RowwContainer = styled.View`
-flex-direction: row;
-align-items: center;
-padding : 5px 20px 5px 0;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 20px 5px 0;
 `;
 
 const LvText = styled.Text`
@@ -146,17 +145,12 @@ const Profile = ({ navigation, route }) => {
   const { setUser } = useContext(UserContext);
   const theme = useContext(ThemeContext);
   const [name, setName] = useState(null);
-  const [lecture, setLecture] = useState({
-    image: null,
-    link: null,
-  });
-  useEffect(async () => {
+  const [lecture, setLecture] = useState();
+  useEffect(() => {
     AsyncStorage.getItem("token", (err, result) => {
       if (err) {
-        console.log("storeage");
         console.log(err);
       } else {
-        console.log("before axios");
         axios
           .get("http://13.209.8.159:5000/users/profile", {
             headers: {
@@ -165,27 +159,16 @@ const Profile = ({ navigation, route }) => {
           })
           .then((response) => {
             console.log(response.data);
-            const userInfo = response.data[0];
-            console.log(userInfo.nickName);
-            setName(userInfo.nickName);
+            setName(response.data.nickName);
+            setLecture(response.data.lecuture);
           })
           .catch((err) => {
             console.log(err);
           });
       }
     });
-    // const response = await axios
-    //   .get("http://13.209.8.159:5000/users/login", {
-    //     response,
-    //   })
-    //   .then((response) => {
-    //     AsyncStorage.getItem("token");
-    //   });
-    return () => {
-      console.log("bye");
-    };
-  });
-  console.log(route.params);
+  }, []);
+  // console.log(route.params);
   return (
     <KeyboardAwareScrollView extraScrollHeight={40}>
       <Container style={{ margin: 20 }}>
@@ -200,7 +183,7 @@ const Profile = ({ navigation, route }) => {
             <LvText>Lv.01 브론즈</LvText>
             <Button
               title="내 정보수정 >"
-              onPress={() => { }}
+              onPress={() => {}}
               containerStyle={{
                 backgroundColor: "#a6a6a6",
                 width: 20,
@@ -221,7 +204,6 @@ const Profile = ({ navigation, route }) => {
                 marginRight: 220,
               }}
               textStyle={{ fontSize: 10 }}
-
             />
           </ColumnContainer>
 
@@ -246,7 +228,8 @@ const Profile = ({ navigation, route }) => {
         <StyledText style={{ margin: 10 }}>수강중인 강좌</StyledText>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-          <TouchableOpacity
+          <ProfileLectureCard lectures={lecture} />
+          {/* <TouchableOpacity
             onPress={() => {
               navigation.navigate("LectureClick");
             }}
@@ -268,7 +251,7 @@ const Profile = ({ navigation, route }) => {
             <LectureContainer>
               <Image
                 url="https://image.ebsi.co.kr/images/teacher_new/@/T0251.png"
-                style={{ borderRadius: 0, width: 100, height: 100, }}
+                style={{ borderRadius: 0, width: 100, height: 100 }}
               />
               <ItemTitle>찹쌀떡 수학l</ItemTitle>
               <ItemDesc>정유빈</ItemDesc>
@@ -281,7 +264,7 @@ const Profile = ({ navigation, route }) => {
           >
             <LectureContainer>
               <Image
-                style={{ borderRadius: 0, width: 100, height: 100, }}
+                style={{ borderRadius: 0, width: 100, height: 100 }}
                 url="https://image.ebsi.co.kr/images/teacher_new/@/T0119.png"
               />
               <ItemTitle>개기일식</ItemTitle>
@@ -297,7 +280,7 @@ const Profile = ({ navigation, route }) => {
             <LectureContainer>
               <Image
                 url="https://image.ebsi.co.kr/images/teacher_new/@/T0353.png"
-                style={{ borderRadius: 0, width: 100, height: 100, }}
+                style={{ borderRadius: 0, width: 100, height: 100 }}
               />
               <ItemTitle>국어 담판</ItemTitle>
               <ItemDesc>최서희</ItemDesc>
@@ -325,7 +308,7 @@ const Profile = ({ navigation, route }) => {
             <LectureContainer>
               <Image
                 url="https://image.ebsi.co.kr/images/teacher_new/@/T0103.png"
-                style={{ borderRadius: 0, width: 100, height: 100, }}
+                style={{ borderRadius: 0, width: 100, height: 100 }}
               />
               <ItemTitle>프러포즈 수학ll</ItemTitle>
               <ItemDesc>심주석</ItemDesc>
@@ -339,22 +322,23 @@ const Profile = ({ navigation, route }) => {
             <LectureContainer>
               <Image
                 url="https://image.ebsi.co.kr/images/teacher_new/@/T0023.png"
-                style={{ borderRadius: 0, width: 100, height: 100, }}
+                style={{ borderRadius: 0, width: 100, height: 100 }}
               />
               <ItemTitle>마법구문독해</ItemTitle>
               <ItemDesc>이아영</ItemDesc>
             </LectureContainer>
-          </TouchableOpacity>
-
+          </TouchableOpacity> */}
         </ScrollView>
         <RowContainer></RowContainer>
         <StyledText style={{ margin: 10 }}>나의 수강평</StyledText>
         <MyReviewContainer>
           <ReviewContainer>
-            <ReviewTitle style={{ color: "#8E75F9", marginLeft: 130 }}>개념의 나비효과</ReviewTitle>
+            <ReviewTitle style={{ color: "#8E75F9", marginLeft: 130 }}>
+              개념의 나비효과
+            </ReviewTitle>
             <ReviewTextContainer>
               <ReviewTitle>박상호</ReviewTitle>
-              <ReviewTime>       2021-12-10</ReviewTime>
+              <ReviewTime> 2021-12-10</ReviewTime>
             </ReviewTextContainer>
             <ReviewDesc>정말 유익한 강의입니다!</ReviewDesc>
             <ReviewTextContainer containerStyle={{ marginTop: 10 }}>
@@ -366,10 +350,12 @@ const Profile = ({ navigation, route }) => {
             </ReviewTextContainer>
           </ReviewContainer>
           <ReviewContainer>
-            <ReviewTitle style={{ color: "#8E75F9", marginLeft: 130 }}>개기 일식</ReviewTitle>
+            <ReviewTitle style={{ color: "#8E75F9", marginLeft: 130 }}>
+              개기 일식
+            </ReviewTitle>
             <ReviewTextContainer>
               <ReviewTitle>박상호</ReviewTitle>
-              <ReviewTime>       2021-11-29</ReviewTime>
+              <ReviewTime> 2021-11-29</ReviewTime>
             </ReviewTextContainer>
             <ReviewDesc>강의 내용이 조금 어려워요..</ReviewDesc>
             <ReviewTextContainer containerStyle={{ marginTop: 10 }}>
@@ -383,24 +369,29 @@ const Profile = ({ navigation, route }) => {
         </MyReviewContainer>
         <RowContainer />
         <StyledText style={{ margin: 10 }}>나의 랭킹</StyledText>
-        <MyReviewContainer>
-        </MyReviewContainer>
-        <RankingContainer style={{ justifyContent: 'space-around' }}>
-          <MaterialIcons name="circle" size={90} color="#F8C646" /><TextContainer>
-            <RowwContainer><ItemTitle>등수 </ItemTitle><StyledText style={{ fontWeight: 'bold' }}>5400위</StyledText></RowwContainer>
+        <MyReviewContainer></MyReviewContainer>
+        <RankingContainer style={{ justifyContent: "space-around" }}>
+          <MaterialIcons name="circle" size={90} color="#F8C646" />
+          <TextContainer>
+            <RowwContainer>
+              <ItemTitle>등수 </ItemTitle>
+              <StyledText style={{ fontWeight: "bold" }}>5400위</StyledText>
+            </RowwContainer>
           </TextContainer>
           <StyledText>종합</StyledText>
         </RankingContainer>
-        <RankingContainer style={{ justifyContent: 'space-around' }}>
-          <MaterialIcons name="circle" size={90} color="#00FFD1" /><TextContainer>
-            <RowwContainer><ItemTitle>등수 </ItemTitle><StyledText style={{ fontWeight: 'bold' }}>340위</StyledText></RowwContainer>
+        <RankingContainer style={{ justifyContent: "space-around" }}>
+          <MaterialIcons name="circle" size={90} color="#00FFD1" />
+          <TextContainer>
+            <RowwContainer>
+              <ItemTitle>등수 </ItemTitle>
+              <StyledText style={{ fontWeight: "bold" }}>340위</StyledText>
+            </RowwContainer>
           </TextContainer>
           <StyledText>학익고등학교</StyledText>
         </RankingContainer>
         <RowContainer />
         <StyledText style={{ margin: 10 }}>나의 퀴즈</StyledText>
-
-
       </Container>
     </KeyboardAwareScrollView>
   );
