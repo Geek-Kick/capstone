@@ -7,7 +7,7 @@ const MyGrade = () => {
         <View style={{ width: "15%" }} />
 
         <Text style={style.grade_name}>국어</Text>
-        <Text style={style.grade_name}>수학2</Text>
+        <Text style={style.grade_name}>수학</Text>
         <Text style={style.grade_name}>영어</Text>
         <Text style={style.grade_name}>한국사</Text>
         <Text style={style.grade_name}>생명2</Text>
@@ -17,7 +17,7 @@ const MyGrade = () => {
       <View style={style.grade_num_box}>
         <View style={{ width: "15.5%" }} />
         <Text style={style.grade_num}>4</Text>
-        <Text style={style.grade_num}>2</Text>
+        <Text style={style.grade_num}>4</Text>
         <Text style={style.grade_num}>1</Text>
         <Text style={style.grade_num}>3</Text>
         <Text style={style.grade_num}>3</Text>

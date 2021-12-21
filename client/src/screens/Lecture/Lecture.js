@@ -163,17 +163,18 @@ const Lecture = ({ navigation }) => {
         </RowContainer>
 
         {/* 나의 맞춤 강의 */}
-        <RecommendLecture />
+        <RecommendLecture navigation={navigation} />
 
-        <RowContainer></RowContainer>
-        <RecommendLecture lecture="생명2" />
+        <RowContainer />
+        <RecommendLecture lecture="국어" navigation={navigation} />
+
         {/* <StyledText>맞춤 강의 OOO</StyledText> */}
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={true}
         ></ScrollView>
-        <RowContainer></RowContainer>
-        <RecommendLecture lecture="국어" navigation={navigation} />
+        <RowContainer />
+        <RecommendLecture lecture="수학" navigation={navigation} />
       </Container>
     </KeyboardAwareScrollView>
   );

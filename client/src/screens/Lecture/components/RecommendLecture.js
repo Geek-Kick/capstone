@@ -67,7 +67,66 @@ const koreaLec = [
   },
 ];
 
+const mathLec = [
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0138.png",
+    title: "하루 30분 기하",
+    name: "최은진",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0013.png",
+    title: "전지적 출제자 시점 수학",
+    name: "이하영",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0280.png",
+    title: "개념끝판왕 수학",
+    name: "정종용",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0307.png",
+    title: "꿈이 될 너를 위한 수학",
+    name: "박자영",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0251.png",
+    title: "찹살떡 수학",
+    name: "정유빈",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0310.png",
+    title: "노베이스 개념 시작",
+    name: "서지나",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0103.png",
+    title: "프로포즈 수학",
+    name: "심주석",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0177.png",
+    title: "스마트 수학",
+    name: "차현우",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0326.png",
+    title: "서.당.개 수학",
+    name: "이국희",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0286.png",
+    title: "만점으로 수렴하는 미적분",
+    name: "남치열",
+  },
+  {
+    uri: "https://image.ebsi.co.kr/images/teacher_new/@/T0278.png",
+    title: "미적분 읽어주는 수능 개념",
+    name: "김민재",
+  },
+];
+
 const RecommendLecture = ({ lecture, navigation }) => {
+  var count = 0;
   if (lecture == "국어") {
     return (
       <View>
@@ -96,14 +155,64 @@ const RecommendLecture = ({ lecture, navigation }) => {
     return (
       <View>
         <Text style={style.represent_text}>나의 맞춤 강의 {lecture}</Text>
-        <Text>국어가 아닙니다.</Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+          {koreaLec.map((item) => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("LectureClick");
+              }}
+            >
+              <View style={style.image_name_total_box}>
+                <Image
+                  source={{ uri: `${item.uri}` }}
+                  style={style.image_style}
+                />
+                <Text style={style.lecture_title}>{item.title}</Text>
+                <Text style={style.lecture_name}>{item.name}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+          {mathLec.map((item) => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("LectureClick");
+              }}
+            >
+              <View style={style.image_name_total_box}>
+                <Image
+                  source={{ uri: `${item.uri}` }}
+                  style={style.image_style}
+                />
+                <Text style={style.lecture_title}>{item.title}</Text>
+                <Text style={style.lecture_name}>{item.name}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     );
   } else {
     return (
       <View>
         <Text style={style.represent_text}>맞춤 강의 {lecture}</Text>
-        <Text>국어가 아닙니다.</Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+          {mathLec.map((item) => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("LectureClick");
+              }}
+            >
+              <View style={style.image_name_total_box}>
+                <Image
+                  source={{ uri: `${item.uri}` }}
+                  style={style.image_style}
+                />
+                <Text style={style.lecture_title}>{item.title}</Text>
+                <Text style={style.lecture_name}>{item.name}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     );
   }
