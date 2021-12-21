@@ -9,6 +9,7 @@ import Lecture from "./Lecture/Lecture";
 import Quiz from "./Quiz";
 import Community from "./Community";
 import LectureClick from "./Lecture/LectureClick";
+import QuizMain from "./Quiz/QuizMain";
 
 export {
   Signin,
@@ -22,4 +23,5 @@ export {
   Quiz,
   Community,
   LectureClick,
+  QuizMain,
 };
