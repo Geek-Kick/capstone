@@ -6,8 +6,22 @@ import {
   Button,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import { FontAwesome } from "@expo/vector-icons";
+
+const quiz = [];
+
+for (let i = 0; i < 20; i++) {
+  quiz.push({
+    num: 15234,
+    title: "제목1",
+    info: "국어",
+    try: 1523,
+    ans: 15.342,
+  });
+}
 
 const QuizMain = () => {
   const [age, setAge] = useState();
@@ -15,8 +29,6 @@ const QuizMain = () => {
   const [difficulty, setDefficulty] = useState();
   return (
     <View>
-      <Text>hi</Text>
-
       <View style={style.picker_box}>
         <Picker
           style={style.picker_style}
@@ -52,10 +64,59 @@ const QuizMain = () => {
           <Picker.Item label="어려움" value="3" />
         </Picker>
 
-        <TouchableOpacity>
-          <Text style={{ width: 50 }}>Click</Text>
+        <TouchableOpacity onPress={() => Alert.alert("hi")}>
+          <FontAwesome
+            name="search"
+            size={40}
+            color="black"
+            style={style.serch_icon_image}
+          />
         </TouchableOpacity>
       </View>
+      <ScrollView style={style.scroll_view}>
+        <View style={style.quiz_top_box}>
+          <Text style={style.quiz_num}>퀴즈번호</Text>
+          <Text style={style.quiz_title}>제목</Text>
+          <Text style={style.quiz_info}>정보</Text>
+          <Text style={style.quiz_try_num}>시도한사람</Text>
+          <Text style={style.quiz_percent}>정답률</Text>
+        </View>
+        {quiz.map((item, index) => {
+          if (index % 2 == 1) {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  Alert.alert("구현");
+                }}
+              >
+                <View style={style.quiz_box}>
+                  <Text style={style.quiz_num}>{item.num}</Text>
+                  <Text style={style.quiz_title}>{item.title}</Text>
+                  <Text style={style.quiz_info}>{item.info}</Text>
+                  <Text style={style.quiz_try_num}>{item.try}</Text>
+                  <Text style={style.quiz_percent}>{item.ans}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          } else {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  Alert.alert("구현");
+                }}
+              >
+                <View style={style.quiz_white_box}>
+                  <Text style={style.quiz_num}>{item.num}</Text>
+                  <Text style={style.quiz_title}>{item.title}</Text>
+                  <Text style={style.quiz_info}>{item.info}</Text>
+                  <Text style={style.quiz_try_num}>{item.try}</Text>
+                  <Text style={style.quiz_percent}>{item.ans}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }
+        })}
+      </ScrollView>
     </View>
   );
 };
@@ -69,11 +130,67 @@ const style = StyleSheet.create({
   picker_style: {
     width: 100,
     height: 50,
-    margin: "5%",
+    marginLeft: 170,
   },
-  button_style: {
+  serch_icon_image: {
+    marginLeft: 100,
     width: 100,
-    height: 50,
+    height: 100,
+    marginTop: 90,
+  },
+
+  scroll_view: {
+    width: "75%",
+    height: "60%",
+    backgroundColor: "#eeeeee",
+    marginTop: "17.5%",
+    marginLeft: "12.5%",
+    flexDirection: "column",
+    borderRadius: 10,
+  },
+
+  quiz_top_box: {
+    backgroundColor: "#C4C4C4",
+    width: "100%",
+    padding: 5,
+    margin: 0,
+    flexDirection: "row",
+  },
+
+  quiz_white_box: {
+    backgroundColor: "#ffffff",
+    width: "100%",
+    padding: 5,
+    margin: 0,
+    flexDirection: "row",
+  },
+
+  quiz_box: {
+    width: "100%",
+    padding: 5,
+    margin: 0,
+    flexDirection: "row",
+  },
+
+  quiz_num: {
+    fontSize: 20,
+    marginRight: "15%",
+    marginLeft: 10,
+  },
+  quiz_title: {
+    fontSize: 20,
+    marginRight: "25%",
+  },
+  quiz_info: {
+    fontSize: 20,
+    marginRight: "10%",
+  },
+  quiz_try_num: {
+    fontSize: 20,
+    marginRight: "10%",
+  },
+  quiz_percent: {
+    fontSize: 20,
   },
 });
 
