@@ -150,6 +150,7 @@ const MyRanking = ({ navigation }) => {
                         data={rankItem}
                         renderItem={({ item }) => <Item item={item} onPress={() => { navigation.navigate("SchoolRanking") }} />}
                         keyExtractor={item => item['id'].toString()}
+                        containerStyle={{ marginBottom: 20 }}
                     />
                 </NormalContainer>
 

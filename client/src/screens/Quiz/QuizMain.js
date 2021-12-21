@@ -14,7 +14,7 @@ const QuizMain = () => {
   const [subject, setSubject] = useState();
   const [difficulty, setDefficulty] = useState();
   return (
-    <View>
+    <View style={{ margin: 20 }}>
       <Text>hi</Text>
 
       <View style={style.picker_box}>
