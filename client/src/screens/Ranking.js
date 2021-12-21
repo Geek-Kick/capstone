@@ -79,7 +79,8 @@ const Ranking = ({ navigation }) => {
                                 <StyledText>5400</StyledText><RankingText>th</RankingText>
                             </RowContainer>
                             <RowContainer>
-                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText><RankingText style={{ fontSize: 10 }}>   ????? PT</RankingText>
+                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText>
+                                <RankingText style={{ fontSize: 10 }}>   25300 PT</RankingText>
                             </RowContainer>
                         </Container>
                     </RankingContainer>
@@ -95,7 +96,8 @@ const Ranking = ({ navigation }) => {
                                 <StyledText>2405</StyledText><RankingText>th</RankingText>
                             </RowContainer>
                             <RowContainer>
-                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText><RankingText style={{ fontSize: 10 }}>   ????? PT</RankingText>
+                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText>
+                                <RankingText style={{ fontSize: 10 }}>   3000 PT</RankingText>
                             </RowContainer>
                         </Container>
                     </RankingContainer>
@@ -111,7 +113,8 @@ const Ranking = ({ navigation }) => {
                                 <StyledText>32</StyledText><RankingText>th</RankingText>
                             </RowContainer>
                             <RowContainer>
-                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText><RankingText style={{ fontSize: 10 }}>   ????? PT</RankingText>
+                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText>
+                                <RankingText style={{ fontSize: 10 }}>   4500 PT</RankingText>
                             </RowContainer>
                         </Container>
                     </RankingContainer>
@@ -127,7 +130,8 @@ const Ranking = ({ navigation }) => {
                                 <StyledText>10293</StyledText><RankingText>th</RankingText>
                             </RowContainer>
                             <RowContainer>
-                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText><RankingText style={{ fontSize: 10 }}>   ????? PT</RankingText>
+                                <RankingText style={{ fontSize: 10, color: 'grey' }}>누적 포인트</RankingText>
+                                <RankingText style={{ fontSize: 10 }}>   9000 PT</RankingText>
                             </RowContainer>
                         </Container>
                     </RankingContainer>
@@ -147,7 +151,7 @@ const Ranking = ({ navigation }) => {
                                     style={{ fontSize: 10, color: 'grey' }}
                                 >누적 포인트
                                 </RankingText><RankingText style={{ fontSize: 10 }}>
-                                    202304 PT</RankingText>
+                                    8800 PT</RankingText>
                             </RowContainer>
                         </Container>
                     </RankingContainer>

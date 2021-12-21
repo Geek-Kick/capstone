@@ -185,8 +185,9 @@ const LectureClick = ({ navigation }) => {
               <MaterialIcons name="star" size={24} color="#F8C646" />
               <MaterialIcons name="star" size={24} color="#F8C646" />
               <MaterialIcons name="star" size={24} color="#F8C646" />
-              <MaterialIcons name="star-half" size={24} color="F8C646" />
-              <MaterialIcons name="star" size={24} color="#F8C646" />
+              <MaterialIcons name="star-half" size={24} color="#F8C646" />
+              <MaterialIcons name="star-border" size={24} color="#F8C646" />
+
             </ReviewTextContainer>
           </ReviewContainer>
           <ReviewContainer>
@@ -207,7 +208,7 @@ const LectureClick = ({ navigation }) => {
           </ReviewContainer>
           <Button
             title="강의평 더보기 >"
-            onPress={() => {}}
+            onPress={() => { }}
             containerStyle={{
               backgroundColor: "#EFEBFF",
             }}
