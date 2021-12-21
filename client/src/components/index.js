@@ -4,5 +4,6 @@ import Input from './Input';
 import ErrorMessage from './ErrorMessage';
 import Spinner from './Spinner';
 import Adv from './Adv';
+import Table from './Table';
 
-export { Button, Image, Input, ErrorMessage, Spinner, Adv };
+export { Button, Image, Input, ErrorMessage, Spinner, Adv, Table };

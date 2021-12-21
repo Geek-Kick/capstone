@@ -67,10 +67,11 @@ const Ranking = ({ navigation }) => {
     return (
         <KeyboardAwareScrollView extraScrollHeight={40}>
             <Container style={{ margin: 20 }}>
-                <StyledText>개인 랭킹</StyledText>
+                <StyledText>ALFY 랭킹</StyledText>
+                <RankingText style={{ margin: 20 }}>개인 랭킹을 보려면 TAB하세요</RankingText>
                 <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
                     <RankingContainer>
-                        <TrophyContainer>
+                        <TrophyContainer style={{ backgroundColor: '#00CAA6' }}>
                             <AntDesign name="Trophy" size={50} color="orange" />
                         </TrophyContainer>
                         <Container>
@@ -87,7 +88,7 @@ const Ranking = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
                     <RankingContainer>
-                        <TrophyContainer>
+                        <TrophyContainer style={{ backgroundColor: '#874100' }}>
                             <AntDesign name="Trophy" size={50} color="orange" />
                         </TrophyContainer>
                         <Container>
@@ -104,7 +105,7 @@ const Ranking = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
                     <RankingContainer>
-                        <TrophyContainer>
+                        <TrophyContainer style={{ backgroundColor: '#B6B6B6' }}>
                             <AntDesign name="Trophy" size={50} color="orange" />
                         </TrophyContainer>
                         <Container>
@@ -121,7 +122,7 @@ const Ranking = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
                     <RankingContainer>
-                        <TrophyContainer>
+                        <TrophyContainer style={{ backgroundColor: '#004CDF' }}>
                             <AntDesign name="Trophy" size={50} color="orange" />
                         </TrophyContainer>
                         <Container>
@@ -136,13 +137,73 @@ const Ranking = ({ navigation }) => {
                         </Container>
                     </RankingContainer>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
                     <RankingContainer>
-                        <TrophyContainer>
+                        <TrophyContainer style={{ backgroundColor: '#FFEA29' }}>
                             <AntDesign name="Trophy" size={50} color="orange" />
                         </TrophyContainer>
                         <Container>
-                            <StyledText>과학 탐구</StyledText>
+                            <StyledText>물리</StyledText>
+                            <RowContainer>
+                                <StyledText>23</StyledText><RankingText>th</RankingText>
+                            </RowContainer>
+                            <RowContainer>
+                                <RankingText
+                                    style={{ fontSize: 10, color: 'grey' }}
+                                >누적 포인트
+                                </RankingText><RankingText style={{ fontSize: 10 }}>
+                                    8800 PT</RankingText>
+                            </RowContainer>
+                        </Container>
+                    </RankingContainer>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
+                    <RankingContainer>
+                        <TrophyContainer style={{ backgroundColor: '#00cAA6' }}>
+                            <AntDesign name="Trophy" size={50} color="orange" />
+                        </TrophyContainer>
+                        <Container>
+                            <StyledText>화학</StyledText>
+                            <RowContainer>
+                                <StyledText>23</StyledText><RankingText>th</RankingText>
+                            </RowContainer>
+                            <RowContainer>
+                                <RankingText
+                                    style={{ fontSize: 10, color: 'grey' }}
+                                >누적 포인트
+                                </RankingText><RankingText style={{ fontSize: 10 }}>
+                                    8800 PT</RankingText>
+                            </RowContainer>
+                        </Container>
+                    </RankingContainer>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
+                    <RankingContainer>
+                        <TrophyContainer style={{ backgroundColor: '#B6B6B6' }}>
+                            <AntDesign name="Trophy" size={50} color="orange" />
+                        </TrophyContainer>
+                        <Container>
+                            <StyledText>생명과학</StyledText>
+                            <RowContainer>
+                                <StyledText>23</StyledText><RankingText>th</RankingText>
+                            </RowContainer>
+                            <RowContainer>
+                                <RankingText
+                                    style={{ fontSize: 10, color: 'grey' }}
+                                >누적 포인트
+                                </RankingText><RankingText style={{ fontSize: 10 }}>
+                                    8800 PT</RankingText>
+                            </RowContainer>
+                        </Container>
+                    </RankingContainer>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate("MyRanking") }}>
+                    <RankingContainer>
+                        <TrophyContainer style={{ backgroundColor: '#874100' }}>
+                            <AntDesign name="Trophy" size={50} color="orange" />
+                        </TrophyContainer>
+                        <Container>
+                            <StyledText>지구과학</StyledText>
                             <RowContainer>
                                 <StyledText>23</StyledText><RankingText>th</RankingText>
                             </RowContainer>
