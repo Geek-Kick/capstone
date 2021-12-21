@@ -9,10 +9,10 @@ const GradeCut = () => {
         <Text style={style.grade_name}>등급</Text>
         <Text style={style.grade_name}>국어</Text>
         <Text style={style.grade_name}>영어</Text>
-        <Text style={style.grade_name}>미적분</Text>
-        <Text style={style.grade_name}>기하</Text>
-        <Text style={style.grade_name}>생명</Text>
+        <Text style={style.grade_name}>수학</Text>
         <Text style={style.grade_name}>물리</Text>
+        <Text style={style.grade_name}>화학</Text>
+        <Text style={style.grade_name}>생명</Text>
         <Text style={style.grade_name}>지구과학</Text>
         <Text style={style.grade_name}>한국사</Text>
         <Text style={style.grade_name}>...</Text>
