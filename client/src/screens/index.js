@@ -8,6 +8,7 @@ import PersonalRanking from "./PersonalRanking";
 import Lecture from "./Lecture/Lecture";
 import Quiz from "./Quiz";
 import Community from "./Community";
+import SchoolRanking from "./SchoolRanking";
 import LectureClick from "./Lecture/LectureClick";
 import QuizMain from "./Quiz/QuizMain";
 
@@ -24,4 +25,5 @@ export {
   Community,
   LectureClick,
   QuizMain,
+  SchoolRanking,
 };

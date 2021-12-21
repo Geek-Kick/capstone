@@ -6,6 +6,7 @@ import { ThemeContext } from "styled-components/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ScrollView, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Button, Image, Input, ErrorMessage, Table } from "../components";
 
 const Container = styled.View`
 flex : 1;
@@ -83,12 +84,18 @@ align-items: center;
 padding : 5px 20px 5px 0;
 `;
 
+const TierGraph = styled.Image`
+width : 485px;
+height : 100px;
+border-Radius : 10px;
+margin : 20px;
+`;
 const rankItem = [];
 for (let i = 1; i < 100; i++) {
     rankItem.push({
         id: i,
         rank: `${i}위`,
-        title: `고등학교  ${i}`,
+        title: `학생  ${i}`,
     });
 }
 
@@ -123,7 +130,7 @@ const Item = ({ item: { id, rank, title }, onPress }) => {
     console.log(id);
 
     return (
-        <ItemContainer onPress={onPress}>
+        <ItemContainer>
             <ItemTextContainer>
                 <ItemDesc>{rank}</ItemDesc>
                 <ItemTitle>{title}</ItemTitle>
@@ -139,64 +146,42 @@ const SchoolName = ({ item: { schoolName }, onPress }) => {
         </ItemTextContainer>
     );
 }
-const MyRanking = ({ navigation }) => {
+const SchoolRanking = () => {
     return (
         <Container>
             <RealContainer style={{ margin: 20 }}>
-                <StyledText>전체 학교 국어 랭킹</StyledText>
+                <StyledText>학익고등학교 내 나의 랭킹</StyledText>
+                <RankingContainer style={{ justifyContent: 'space-around' }}>
+                    <TrophyContainer>
+                        <AntDesign name="Trophy" size={50} color="orange" />
+                    </TrophyContainer>
+                    <TextContainer>
+                        <RowContainer>
+                            <RankingText>등수 </RankingText>
+                            <RankingText style={{ fontWeight: 'bold' }}>22위</RankingText></RowContainer>
+                    </TextContainer>
+                    <StyledText>박상호</StyledText>
+                </RankingContainer>
+                <StyledText>티어 그래프</StyledText>
+                <TierGraph source={{ uri: "https://image.fmkorea.com/files/attach/new/20190821/494354581/227573697/2110231057/15c75a61645bcd13e9609fef4affd386.png" }}
+                />
+                <StyledText>학교 내 나의 기여도</StyledText>
+                <Table />
+            </RealContainer>
+            <RealContainer style={{ margin: 20 }}>
+                <StyledText>학익고등학교 학생 랭킹</StyledText>
                 <NormalContainer>
                     <RankingText style={{ marginTop: 20, marginLeft: 220, fontWeight: 'bold' }}>TOP 100</RankingText>
                     <FlatList
                         data={rankItem}
-                        renderItem={({ item }) => <Item item={item} onPress={() => { navigation.navigate("SchoolRanking") }} />}
+                        renderItem={({ item }) => <Item item={item} />}
                         keyExtractor={item => item['id'].toString()}
                     />
                 </NormalContainer>
 
             </RealContainer>
-            <RealContainer style={{ margin: 20 }}>
-                <ScrollView>
-                    <StyledText>우리 학교 국어 랭킹</StyledText>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("SchoolRanking")}>
-                        <RankingContainer style={{ justifyContent: 'space-around' }}>
-                            <TrophyContainer>
-                                <AntDesign name="Trophy" size={50} color="orange" />
-                            </TrophyContainer>
-                            <TextContainer>
-                                <RowContainer>
-                                    <RankingText>등수 </RankingText>
-                                    <RankingText style={{ fontWeight: 'bold' }}>83위</RankingText></RowContainer>
-                            </TextContainer>
-                            <StyledText>학익고등학교</StyledText>
-                        </RankingContainer>
-                    </TouchableOpacity>
-                    <StyledText>국어 과목 내 나의 랭킹</StyledText>
-                    <RankingContainer>
-                        <TrophyContainer>
-                            <AntDesign name="Trophy" size={50} color="orange" />
-                        </TrophyContainer>
-                        <TextContainer>
-                            <RowContainer><RankingText>등수 </RankingText>
-                                <RankingText style={{ fontWeight: 'bold' }}>2405위</RankingText></RowContainer>
-                        </TextContainer>
-                        <StyledText>박상호</StyledText>
-                    </RankingContainer>
-                    <StyledText>지역 내 나의 국어 랭킹</StyledText>
-                    <RankingContainer>
-                        <TrophyContainer>
-                            <AntDesign name="Trophy" size={50} color="orange" />
-                        </TrophyContainer>
-                        <TextContainer>
-
-                            <RowContainer><RankingText>등수 </RankingText><RankingText style={{ fontWeight: 'bold' }}>1022위</RankingText></RowContainer>
-                        </TextContainer>
-                        <StyledText>용인</StyledText>
-                    </RankingContainer>
-                </ScrollView>
-            </RealContainer>
         </Container >
     )
 }
 
-export default MyRanking;
+export default SchoolRanking;

@@ -11,10 +11,10 @@ import {
   Quiz,
   LectureClick,
   Signin,
+  SchoolRanking,
   QuizMain,
 } from "../screens";
 import Home from "./Home";
-
 const Stack = createStackNavigator();
 
 const Main = () => {
@@ -37,6 +37,7 @@ const Main = () => {
       <Stack.Screen name="LectureClick" component={LectureClick} />
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="Signin" component={Signin} />
+      <Stack.Screen name="SchoolRanking" component={SchoolRanking} />
       <Stack.Screen name="QuizMain" component={QuizMain} />
     </Stack.Navigator>
   );
