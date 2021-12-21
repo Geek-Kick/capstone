@@ -173,7 +173,7 @@ const Lecture = ({ navigation }) => {
           showsHorizontalScrollIndicator={true}
         ></ScrollView>
         <RowContainer></RowContainer>
-        <RecommendLecture lecture="국어" navigation />
+        <RecommendLecture lecture="국어" navigation={navigation} />
       </Container>
     </KeyboardAwareScrollView>
   );
