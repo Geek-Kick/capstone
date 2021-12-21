@@ -109,7 +109,7 @@ const Lecture = ({ navigation }) => {
         <RowContainer>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <TouchableOpacity>
-              <GradeText style={{ color: "#111", paddingLeft: 20 }}>
+              <GradeText style={{ color: "#111", paddingLeft: 20, }}>
                 1학년 3월
               </GradeText>
             </TouchableOpacity>
@@ -120,7 +120,7 @@ const Lecture = ({ navigation }) => {
               <GradeText style={{ paddingLeft: 150 }}>1학년 9월</GradeText>
             </TouchableOpacity>
             <TouchableOpacity>
-              <GradeText style={{ paddingLeft: 150 }}>1학년 3월</GradeText>
+              <GradeText style={{ paddingLeft: 150 }}>2학년 3월</GradeText>
             </TouchableOpacity>
             <TouchableOpacity>
               <GradeText style={{ paddingLeft: 150 }}>2학년 6월</GradeText>

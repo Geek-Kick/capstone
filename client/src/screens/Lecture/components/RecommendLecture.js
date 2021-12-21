@@ -233,12 +233,14 @@ const style = StyleSheet.create({
     borderRadius: 0,
     width: 100,
     height: 100,
+
   },
 
   lecture_title: {
     top: 5,
     width: 100,
     textAlign: "center",
+    fontWeight: "bold",
     fontSize: 15,
   },
 
