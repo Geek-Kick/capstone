@@ -5,10 +5,10 @@ import Ranking from "./Ranking";
 import MyRanking from "./MyRanking";
 import RankingList from "./RankingList";
 import PersonalRanking from "./PersonalRanking";
-import Lecture from "./Lecture";
+import Lecture from "./Lecture/Lecture";
 import Quiz from "./Quiz";
 import Community from "./Community";
-import LectureClick from "./LectureClick";
+import LectureClick from "./Lecture/LectureClick";
 
 export {
   Signin,
