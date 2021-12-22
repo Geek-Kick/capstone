@@ -96,6 +96,7 @@ const style = StyleSheet.create({
 
   grade_name: {
     fontSize: 12,
+    fontWeight: "bold",
     color: "#ffffff",
     top: 5,
     width: "10%",
