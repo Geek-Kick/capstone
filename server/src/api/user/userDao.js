@@ -46,6 +46,7 @@ SELECT b.id as lectureId
     , b.imageUrl as lectureImage
     , b.link as lectureLink
     , c.name as subject
+    , d.name as teacherName
     , CONCAT(DATE_FORMAT(a.createdAt, "%Y-%m-%d")," ~ ") as createdAt
 FROM SelectedLecture a
 LEFT JOIN ( SELECT id, name, lecturerId, imageUrl, subjectId, link
@@ -54,6 +55,9 @@ LEFT JOIN ( SELECT id, name, lecturerId, imageUrl, subjectId, link
 LEFT JOIN ( SELECT id, name
             FROM Subject ) as c
             ON b.subjectId = c.id
+LEFT JOIN ( SELECT id, name 
+            FROM Lecturer) as d 
+            ON b.lecturerId = d.id
 WHERE a.userId = ? AND a.status = 'ACTIVE'
 ORDER BY c.id ASC, a.createdAt DESC;`;
 

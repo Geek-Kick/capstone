@@ -23,7 +23,7 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
-const QuizMain = () => {
+const QuizMain = ({ navigation }) => {
   const [age, setAge] = useState();
   const [subject, setSubject] = useState();
   const [difficulty, setDefficulty] = useState();
@@ -86,7 +86,7 @@ const QuizMain = () => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  Alert.alert("구현");
+                  navigation.navigate("QuizDetail");
                 }}
               >
                 <View style={style.quiz_box}>
@@ -102,7 +102,7 @@ const QuizMain = () => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  Alert.alert("구현");
+                  navigation.navigate("QuizDetail");
                 }}
               >
                 <View style={style.quiz_white_box}>
