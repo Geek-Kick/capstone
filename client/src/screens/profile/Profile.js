@@ -160,7 +160,7 @@ const Profile = ({ navigation, route }) => {
           .then((response) => {
             console.log(response.data);
             setName(response.data.nickName);
-            setLecture(response.data.lecuture);
+            setLecture(response.data.lecture);
           })
           .catch((err) => {
             console.log(err);
@@ -178,7 +178,7 @@ const Profile = ({ navigation, route }) => {
               label="사용자 이름"
               value={name}
               containerStyle={{ height: 10 }}
-              style={{ width: 300, height: 55 }}
+              style={{ width: 300, height: 65 }}
             />
             <LvText>Lv.01 브론즈</LvText>
             <Button

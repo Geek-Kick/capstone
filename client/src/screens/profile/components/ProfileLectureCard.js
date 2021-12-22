@@ -5,12 +5,14 @@ import styled from "styled-components/native";
 const ItemTitle = styled.Text`
   font-size: 20px;
   font-weight: 600;
+  text-align: center;
 `;
 
 const ItemDesc = styled.Text`
   font-size: 16px;
   margin-top: 5px;
   color: ${({ theme }) => theme.itemDesc};
+  text-align: center;
 `;
 
 const ProfileLectureCard = ({ lectures, navigation }) => {
@@ -42,7 +44,7 @@ const ProfileLectureCard = ({ lectures, navigation }) => {
                   source={{ uri: `${lecture.lectureImage}` }}
                 />
                 <ItemTitle>{lecture.lectureName}</ItemTitle>
-                <ItemDesc>Need Fix</ItemDesc>
+                <ItemDesc>{lecture.teacherName}</ItemDesc>
               </TouchableOpacity>
             </View>
           );
